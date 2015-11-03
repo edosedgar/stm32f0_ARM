@@ -1,0 +1,68 @@
+22:16:36.667 [Worker-38] INFO  org.coocox.codb.common.log.ErrorLog - [D:/Program_Files/CooCox/CoIDE/bin\fossil.exe,clone,-A,admin,http://admin:3eb844@data.coocox.org:9090/cgi-bin/repo/88743848-ee2f-410d-9a31-3565ee881d71,D:/Program_Files/CooCox/CoIDE/repo\.rn\fossils\88743848-ee2f-410d-9a31-3565ee881d71.fossil] executed OK 
+Bytes      Cards  Artifacts     Deltas
+Sent:              53          1          0          0
+waiting for server...
+processed: 1%         
+processed: 4%         
+processed: 6%         
+processed: 11%         
+processed: 12%         
+processed: 13%         
+processed: 15%         
+processed: 88%         
+processed: 90%         
+processed: 96%         
+processed: 97%         
+processed: 99%         
+Received:        4206         13          5          0
+Sent:              58          2          0          0
+waiting for server...
+processed: 3%         
+Received:         634          2          0          0
+Total network traffic: 644 bytes sent, 5048 bytes received
+Rebuilding repository meta-data...
+  0.0% complete...
+  20.0% complete...
+  40.0% complete...
+  60.0% complete...
+  80.0% complete...
+  100.0% complete...
+project-id: 916dc1eb84a2ab3e7ff866138c2aef166c9765bd
+server-id:  d1e57ddba021258ab6f9d8b21cdf343d9d9f4567
+admin-user: admin (password is "d8ae65")
+
+22:16:36.667 [Worker-35] ERROR org.coocox.codb.common.log.ErrorLog - [clone user pass] executed Error 
+D:\Program_Files\CooCox\CoIDE\bin\fossil.exe: SQLITE_ERROR: table blob already exists
+D:\Program_Files\CooCox\CoIDE\bin\fossil.exe: table blob already exists
+If you have recently updated your fossil executable, you might
+need to run "fossil all rebuild" to bring the repository
+schemas up to date.
+
+22:16:36.678 [Worker-35] ERROR org.coocox.codb.common.log.ErrorLog - freshExamplesByCompId API failed 
+clone from server errored
+org.coocox.codb.common.fossil.Fossil.cloneFromServer(Fossil.java:89)
+org.coocox.codb.client.core.service.RepoService.clone(RepoService.java:79)
+org.coocox.codb.client.core.api.impl.ExampleApiImpl.freshExamplesByCompId(ExampleApiImpl.java:272)
+org.coocox.example.core.impl.ExampleDBCmdHandler.freshExamplesByCompId(ExampleDBCmdHandler.java:51)
+org.coocox.integrate.component.views.ComponentView$4$1.run(ComponentView.java:346)
+org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+
+22:16:37.314 [Worker-38] INFO  org.coocox.codb.common.log.ErrorLog - [D:/Program_Files/CooCox/CoIDE/bin\fossil.exe,open,D:/Program_Files/CooCox/CoIDE/repo\.rn\fossils\88743848-ee2f-410d-9a31-3565ee881d71.fossil,-latest] executed OK 
+doc/description.html
+doc/docInfo.dat
+src/example/RCC_Exp.c
+project-name: <unnamed>
+repository:   D:/Program_Files/CooCox/CoIDE/repo\.rn\fossils\88743848-ee2f-410d-9a31-3565ee881d71.fossil
+local-root:   D:/Program_Files/CooCox/CoIDE/repo/Examples/1002_RCC_Exp/
+user-home:    C:/Users/Edgar/AppData/Local
+project-code: 916dc1eb84a2ab3e7ff866138c2aef166c9765bd
+checkout:     42ab939ed4ba7cf55189bfe6c3560c4716cc203d 2013-11-13 02:31:29 UTC
+parent:       3aba49dd32e69e7192cc9892f4f3374f2b30ad1f 2013-11-13 02:29:44 UTC
+tags:         trunk
+comment:      commit the example sourceCode (user: admin)
+
+22:16:37.334 [Worker-38] INFO  org.coocox.codb.common.log.ErrorLog - [D:/Program_Files/CooCox/CoIDE/bin\fossil.exe,close,-force] executed OK 
+
+
+22:16:38.106 [Worker-38] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`440`freshExamplesByCompId`5562

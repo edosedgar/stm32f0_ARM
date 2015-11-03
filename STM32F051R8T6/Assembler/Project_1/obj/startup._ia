@@ -1,0 +1,1 @@
+--cpu Cortex-M0 --pd "__EVAL SETA 1" -g --apcs=interwork -I D:\Program_Files\Keil\ARM\RV31\Inc -I D:\Program_Files\Keil\ARM\CMSIS\Include -I D:\Program_Files\Keil\ARM\Inc\ST\STM32F0xx --list ".\obj\Startup.lst" --xref -o ".\obj\Startup.o" --depend ".\obj\Startup.d" "Startup.asm"

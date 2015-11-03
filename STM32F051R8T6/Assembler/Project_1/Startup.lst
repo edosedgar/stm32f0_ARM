@@ -1,0 +1,62 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 EXPORT           SystemInit
+    2 00000000                 EXPORT           __main
+    3 00000000         
+    4 00000000                 AREA             GeneralCodeSector,CODE
+    5 00000000         
+    6 00000000         
+    7 00000000         SystemInit
+                               PROC
+    8 00000000 BF00            NOP
+    9 00000002 BF00            NOP
+   10 00000004 4770            BX               LR
+   11 00000006                 ENDP
+   12 00000006         
+   13 00000006         __main  PROC
+   14 00000006 BF00            NOP
+   15 00000008 BF00            NOP
+   16 0000000A E7FE            B                __main
+   17 0000000C                 ENDP
+   18 0000000C                 END
+Command Line: --debug --xref --cpu=Cortex-M0 --apcs=interwork --depend=Startup.
+d -oStartup.o -ID:\Program_Files\Keil\ARM\RV31\Inc -ID:\Program_Files\Keil\ARM\
+CMSIS\Include -ID:\Program_Files\Keil\ARM\Inc\ST\STM32F0xx --predefine="__EVAL 
+SETA 1" --list=Startup.lst Startup.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+GeneralCodeSector 00000000
+
+Symbol: GeneralCodeSector
+   Definitions
+      At line 4 in file Startup.asm
+   Uses
+      None
+Comment: GeneralCodeSector unused
+SystemInit 00000000
+
+Symbol: SystemInit
+   Definitions
+      At line 7 in file Startup.asm
+   Uses
+      At line 1 in file Startup.asm
+Comment: SystemInit used once
+__main 00000006
+
+Symbol: __main
+   Definitions
+      At line 13 in file Startup.asm
+   Uses
+      At line 2 in file Startup.asm
+      At line 16 in file Startup.asm
+
+3 symbols
+334 symbols in table

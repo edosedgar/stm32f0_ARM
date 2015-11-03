@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -g -nostartfiles -Map=Startup.map -O0 --gc-sections -LD:\Program_Files\CooCox\CoIDE\configuration\ProgramData\Startup -TD:\Program_Files\CooCox\CoIDE\configuration\ProgramData\Startup/arm-gcc-link.ld -g">
+      <target file="Startup.elf" lastModified="14266da725d">
+         <source file="..\obj\stm32f0xx_rcc.o" lastModified="14266c6d21a"/>
+         <source file="..\obj\stm32f0xx_adc.o" lastModified="14266c6d27b"/>
+         <source file="..\obj\main.o" lastModified="14266da707a"/>
+         <source file="..\obj\startup_stm32f0xx.o" lastModified="14266c6d2f7"/>
+         <source file="..\obj\stm32f0xx_spi.o" lastModified="14266c6d361"/>
+         <source file="..\obj\stm32f0xx_gpio.o" lastModified="14266c6d3c7"/>
+         <source file="..\obj\stm32f0xx_tim.o" lastModified="14266c6d4b2"/>
+         <source file="..\obj\system_stm32f0xx.o" lastModified="14266c6d4f0"/>
+         <source file="..\obj\stm32f0xx_flash.o" lastModified="14266c6d55a"/>
+         <source file="..\obj\core_cm0.o" lastModified="14266c6d592"/>
+      </target>
+   </processor>
+</history>

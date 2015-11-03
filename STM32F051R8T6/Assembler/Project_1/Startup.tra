@@ -1,0 +1,19 @@
+*** Creating Trace Output File 'Startup.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup_stm32f0xx.o"'
+### List of Objects: adding '"startup.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M0 "startup_stm32f0xx.o" "startup.o" --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Startup.map" -o "Startup.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'Startup.axf'
+### ADS-LD Command File: 'Startup.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'Startup.lnp', Handle=0x00000350
+### Writing '.lnp' file
+### ADS-LD Command file 'Startup.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

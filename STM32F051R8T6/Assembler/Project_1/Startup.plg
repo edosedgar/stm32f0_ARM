@@ -1,0 +1,185 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\STM8S_PROJECT\STM32F051R8T6\Assembler\Project_1\Startup.uvproj
+Project File Date:  10/19/2012
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+linking...
+Startup.axf: Warning: L6665W: Neither Lib$$Request$$armlib Lib$$Request$$cpplib defined, not searching ARM libraries.
+Startup.axf: Error: L6411E: No compatible library exists with a definition of startup symbol __main.
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+startup_stm32f0xx.s(248): error: A1167E: Invalid line start 
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+startup_stm32f0xx.s(217): error: A1167E: Invalid line start 
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+startup_stm32f0xx.s(217): error: A1167E: Invalid line start 
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+startup_stm32f0xx.s(118): error: A1167E: Invalid line start 
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+startup_stm32f0xx.s(122): warning: A1488W: PROC/FUNC at line 118 in 'startup_stm32f0xx.s' without matching ENDP/ENDFUNC
+startup_stm32f0xx.s(124): error: A1129E: Imported name '__main' already exists
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+startup_stm32f0xx.s(126): error: A1129E: Imported name '__main' already exists
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(7): error: A1186E: Code generated in data area
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(13): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(7): error: A1186E: Code generated in data area
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(13): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(7): error: A1186E: Code generated in data area
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(13): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(7): error: A1186E: Code generated in data area
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(13): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(7): error: A1186E: Code generated in data area
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(13): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(10): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Startup.asm(16): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(10): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Startup.asm(16): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(10): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Startup.asm(16): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(10): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Startup.asm(16): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(10): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Startup.asm(16): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling Startup.asm...
+Startup.asm(4): error: A1137E: Unexpected characters at end of line
+Startup.asm(8): error: A1186E: Code generated in data area
+Startup.asm(9): error: A1186E: Code generated in data area
+Startup.asm(10): error: A1186E: Code generated in data area
+Startup.asm(14): error: A1186E: Code generated in data area
+Startup.asm(15): error: A1186E: Code generated in data area
+Startup.asm(16): error: A1186E: Code generated in data area
+Target not created
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+assembling Startup.asm...
+linking...
+Program Size: Code=40 RO-data=192 RW-data=0 ZI-data=1024  
+"Startup.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\Startup.AXF" 
+Internal DLL Error
+Build target 'Target 1'
+assembling startup_stm32f0xx.s...
+assembling Startup.asm...
+linking...
+Program Size: Code=40 RO-data=192 RW-data=0 ZI-data=1024  
+FromELF: creating hex file...
+".\obj\Startup.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+No Algorithm found for: 08000000H - 080000E7H
+Erase skipped!
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+No Algorithm found for: 08000000H - 080000E7H
+Erase skipped!
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+No Algorithm found for: 08000000H - 080000E7H
+Erase skipped!
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+No Algorithm found for: 08000000H - 080000E7H
+Erase skipped!
+Load "E:\\STM8S_PROJECT\\STM32F051R8T6\\Assembler\\Project_1\\obj\\Startup.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.

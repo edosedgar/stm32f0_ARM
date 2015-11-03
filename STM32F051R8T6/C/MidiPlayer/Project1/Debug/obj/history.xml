@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc 2.95 i386-mingw32 -mcpu=cortex-m0 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F051R8 -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -IE:\STM_PROJECT\STM32F051R8T6\C\MidiPlayer\cmsis_boot -IE:\STM_PROJECT\STM32F051R8T6\C\MidiPlayer\stm_lib -IE:\STM_PROJECT\STM32F051R8T6\C -IE:\STM_PROJECT\STM32F051R8T6\C\MidiPlayer\stm_lib\inc -IE:\STM_PROJECT\STM32F051R8T6\C\MidiPlayer -IE:\STM_PROJECT\STM32F051R8T6\C\MidiPlayer\cmsis_core">
+      <target file="stm32f0xx_syscfg.o" lastModified="143549b1de6">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_syscfg.c" lastModified="14352f78860"/>
+      </target>
+      <target file="stm32f0xx_dac.o" lastModified="143549b1e7d">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_dac.c" lastModified="14352c88a18"/>
+      </target>
+      <target file="stm32f0xx_spi.o" lastModified="143549b1b9f">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_spi.c" lastModified="14352c8b30f"/>
+      </target>
+      <target file="stm32f0xx_gpio.o" lastModified="143549b1bf1">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_gpio.c" lastModified="14352c86e8d"/>
+      </target>
+      <target file="stm32f0xx_rcc.o" lastModified="143549b19ee">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_rcc.c" lastModified="14352c861b5"/>
+      </target>
+      <target file="stm32f0xx_flash.o" lastModified="143549b1d9f">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_flash.c" lastModified="14352cfc15b"/>
+      </target>
+      <target file="stm32f0xx_dma.o" lastModified="143549b1b2f">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_dma.c" lastModified="14352c88d93"/>
+      </target>
+      <target file="stm32f0xx_misc.o" lastModified="143549b1e28">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_misc.c" lastModified="1420f3e9160"/>
+      </target>
+      <target file="stm32f0xx_adc.o" lastModified="143549b1a57">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_adc.c" lastModified="14352c87fd5"/>
+      </target>
+      <target file="main.o" lastModified="143589afbf7">
+         <source file="..\..\..\main.c" lastModified="143548d3e16"/>
+      </target>
+      <target file="system_stm32f0xx.o" lastModified="143549b1d2d">
+         <source file="..\..\..\cmsis_boot\system_stm32f0xx.c" lastModified="14352c83813"/>
+      </target>
+      <target file="stm32f0xx_tim.o" lastModified="143549b1ceb">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_tim.c" lastModified="14352c8abcb"/>
+      </target>
+      <target file="startup_stm32f0xx.o" lastModified="143549b1ae0">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f0xx.s" lastModified="1435486f5cf"/>
+      </target>
+   </processor>
+</history>

@@ -1,0 +1,23 @@
+00:24:41.006 [Worker-7] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`457`freshExamplesByCompId`1060
+00:24:41.006 [Worker-9] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`457`freshExamplesByCompId`699
+00:24:41.503 [Worker-0] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`456`freshExamplesByCompId`288
+00:25:03.264 [Worker-0] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`456`freshExamplesByCompId`439
+00:25:24.535 [Worker-1] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`31`freshExamplesByCompId`5714
+00:29:51.752 [Worker-7] ERROR org.coocox.codb.common.log.ErrorLog - example not exists:798
+
+00:29:51.752 [Worker-7] ERROR org.coocox.codb.common.log.ErrorLog - local exam data invalid!null
+
+00:29:51.752 [Worker-7] ERROR org.coocox.codb.common.log.ErrorLog - downloadExamples API failed 
+local exam data invalid!null
+org.coocox.codb.client.core.api.impl.ExampleApiImpl.freshExamplesByCompId(ExampleApiImpl.java:283)
+org.coocox.example.core.impl.ExampleDBCmdHandler.freshExamplesByCompId(ExampleDBCmdHandler.java:51)
+org.coocox.integrate.component.views.ComponentView$4$1.run(ComponentView.java:346)
+org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+
+00:31:46.282 [Worker-13] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`456`freshExamplesByCompId`440
+00:35:45.041 [Worker-15] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`456`freshExamplesByCompId`516
+00:35:46.277 [Worker-15] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`456`freshExamplesByCompId`719
+00:42:38.182 [Worker-26] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`457`freshExamplesByCompId`813
+00:42:38.624 [Worker-25] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`457`freshExamplesByCompId`817
+00:42:39.077 [Worker-26] INFO  org.coocox.codb.common.log.ProcessTimeLog - 47`467`freshExamplesByCompId`250

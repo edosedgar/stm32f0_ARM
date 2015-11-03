@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc 2.95 i386-mingw32 -mcpu=cortex-m0 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F051R8 -DSTM32F0XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\stm_lib\inc -IE:\STM_PROJECT\STM32F051R8T6\C -IE:\STM_PROJECT\STM32F051R8T6\C\Project2 -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\cmsis_boot -IE:\STM_PROJECT\STM32F051R8T6 -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\cmsis_core -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\stm_lib">
+      <target file="Nokia1616LCD.o" lastModified="13f4e5cd272">
+         <source file="..\..\..\Nokia1616LCD.c" lastModified="13f4e5ccf2e"/>
+      </target>
+   </processor>
+   <processor signature="arm-none-eabi-gcc 2.95 i386-mingw32 -mcpu=cortex-m0 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F051R8 -DSTM32F0XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\stm_lib\inc -IE:\STM_PROJECT\STM32F051R8T6\C -IE:\STM_PROJECT\STM32F051R8T6\C\Project2 -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\cmsis_boot -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\cmsis_core -IE:\STM_PROJECT\STM32F051R8T6\C\Project2\stm_lib">
+      <target file="stm32f0xx_spi.o" lastModified="13f518dd022">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_spi.c" lastModified="13f4e26d945"/>
+      </target>
+      <target file="stm32f0xx_gpio.o" lastModified="13f518dd0ab">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_gpio.c" lastModified="13f4e26b39b"/>
+      </target>
+      <target file="stm32f0xx_rcc.o" lastModified="13f518dcef0">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_rcc.c" lastModified="13f4e269df5"/>
+      </target>
+      <target file="stm32f0xx_flash.o" lastModified="13f518dd264">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_flash.c" lastModified="13f4e26d046"/>
+      </target>
+      <target file="stm32f0xx_adc.o" lastModified="13f518dcf53">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_adc.c" lastModified="13f4e26bc0d"/>
+      </target>
+      <target file="main.o" lastModified="13f9b44979c">
+         <source file="..\..\..\main.c" lastModified="13f51d3f1c3"/>
+      </target>
+      <target file="stm32f0xx_tim.o" lastModified="13f518dd1a6">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_tim.c" lastModified="13f4e26e095"/>
+      </target>
+      <target file="system_stm32f0xx.o" lastModified="13f518dd1f0">
+         <source file="..\..\..\cmsis_boot\system_stm32f0xx.c" lastModified="13f4e269e19"/>
+      </target>
+      <target file="core_cm0.o" lastModified="13f518dd2a0">
+         <source file="..\..\..\cmsis_core\core_cm0.c" lastModified="13f4e269e35"/>
+      </target>
+      <target file="startup_stm32f0xx.o" lastModified="13f518dcfac">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f0xx.s" lastModified="13f4e269e03"/>
+      </target>
+   </processor>
+</history>

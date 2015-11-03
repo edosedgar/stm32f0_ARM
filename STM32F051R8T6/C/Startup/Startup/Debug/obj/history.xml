@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc 2.95 i386-mingw32 -mcpu=cortex-m0 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F051R8 -DSTM32F0XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -IE:\STM_PROJECT\STM32F051R8T6\C\Startup\cmsis_boot -IE:\STM_PROJECT\STM32F051R8T6\C\Startup\cmsis_core -IE:\STM_PROJECT\STM32F051R8T6\C -IE:\STM_PROJECT\STM32F051R8T6\C\Startup\stm_lib -IE:\STM_PROJECT\STM32F051R8T6\C\Startup\stm_lib\inc -IE:\STM_PROJECT\STM32F051R8T6\C\Startup">
+      <target file="stm32f0xx_spi.o" lastModified="14266c6d361">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_spi.c" lastModified="13fb02b5f80"/>
+      </target>
+      <target file="stm32f0xx_gpio.o" lastModified="14266c6d3c7">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_gpio.c" lastModified="13fb02b4544"/>
+      </target>
+      <target file="stm32f0xx_rcc.o" lastModified="14266c6d21a">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_rcc.c" lastModified="13fb02b3018"/>
+      </target>
+      <target file="stm32f0xx_flash.o" lastModified="14266c6d55a">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_flash.c" lastModified="13fb02b5073"/>
+      </target>
+      <target file="stm32f0xx_adc.o" lastModified="14266c6d27b">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_adc.c" lastModified="13fb02b3e04"/>
+      </target>
+      <target file="main.o" lastModified="14266da707a">
+         <source file="..\..\..\main.c" lastModified="14266da6e26"/>
+      </target>
+      <target file="system_stm32f0xx.o" lastModified="14266c6d4f0">
+         <source file="..\..\..\cmsis_boot\system_stm32f0xx.c" lastModified="13fb02b3037"/>
+      </target>
+      <target file="stm32f0xx_tim.o" lastModified="14266c6d4b2">
+         <source file="..\..\..\stm_lib\src\stm32f0xx_tim.c" lastModified="13fb02b5a08"/>
+      </target>
+      <target file="core_cm0.o" lastModified="14266c6d592">
+         <source file="..\..\..\cmsis_core\core_cm0.c" lastModified="13fb02b304d"/>
+      </target>
+      <target file="startup_stm32f0xx.o" lastModified="14266c6d2f7">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f0xx.s" lastModified="13efbe9edfe"/>
+      </target>
+   </processor>
+</history>

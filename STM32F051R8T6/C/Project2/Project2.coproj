@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project version="2G" name="Project2">
+  <Target name="Project2" isCurrent="1">
+    <Device manufacturerId="9" manufacturerName="ST" chipId="249" chipName="STM32F051R8" boardId="" boardName=""/>
+    <BuildOption>
+      <Compile>
+        <Option name="OptimizationLevel" value="0"/>
+        <Option name="UseFPU" value="0"/>
+        <Option name="UserEditCompiler" value=""/>
+        <Includepaths>
+          <Includepath path="."/>
+        </Includepaths>
+        <DefinedSymbols>
+          <Define name="STM32F051R8"/>
+          <Define name="STM32F0XX"/>
+          <Define name="USE_STDPERIPH_DRIVER"/>
+          <Define name="__ASSEMBLY__"/>
+        </DefinedSymbols>
+      </Compile>
+      <Link useDefault="0">
+        <Option name="DiscardUnusedSection" value="0"/>
+        <Option name="UserEditLinkder" value=""/>
+        <Option name="UseMemoryLayout" value="1"/>
+        <Option name="Library" value="Not use C Library"/>
+        <LinkedLibraries/>
+        <MemoryAreas debugInFlashNotRAM="1">
+          <Memory name="IROM1" type="ReadOnly" size="0x00010000" startValue="0x00000000"/>
+          <Memory name="IRAM1" type="ReadWrite" size="0x00002000" startValue="0x20000000"/>
+          <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
+          <Memory name="IRAM2" type="ReadWrite" size="" startValue=""/>
+        </MemoryAreas>
+        <LocateLinkFile path="d:/program_files/coocox/coide/configuration/programdata/project2/arm-gcc-link.ld" type="0"/>
+      </Link>
+      <Output>
+        <Option name="OutputFileType" value="0"/>
+        <Option name="Path" value="./"/>
+        <Option name="Name" value="Project2"/>
+        <Option name="HEX" value="1"/>
+        <Option name="BIN" value="1"/>
+      </Output>
+      <User>
+        <UserRun name="Run#1" type="Before" checked="0" value=""/>
+        <UserRun name="Run#1" type="After" checked="0" value=""/>
+      </User>
+    </BuildOption>
+    <DebugOption>
+      <Option name="org.coocox.codebugger.gdbjtag.core.adapter" value="ST-Link"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="SWD"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="1M"/>
+      <Option name="org.coocox.codebugger.gdbjtag.corerunToMain" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.jlinkgdbserver" value=""/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.userDefineGDBScript" value=""/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.targetEndianess" value="0"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.jlinkResetMode" value="Type 0: Normal"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.resetMode" value="SYSRESETREQ"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="0"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ipAddress" value="127.0.0.1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.portNumber" value="2009"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.autoDownload" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.verify" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.downloadFuction" value="Erase Effected"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.defaultAlgorithm" value="STM32F05xx_64.elf"/>
+    </DebugOption>
+    <ExcludeFile/>
+  </Target>
+  <Components path="./">
+    <Component id="46" name="M0 Cmsis Core" path="" type="2"/>
+    <Component id="418" name="CMSIS BOOT" path="" type="2"/>
+    <Component id="419" name="RCC" path="" type="2"/>
+    <Component id="422" name="GPIO" path="" type="2"/>
+    <Component id="423" name="ADC" path="" type="2"/>
+    <Component id="430" name="FLASH" path="" type="2"/>
+    <Component id="434" name="SPI" path="" type="2"/>
+    <Component id="436" name="TIM" path="" type="2"/>
+  </Components>
+  <Files>
+    <File name="stm_lib/inc/stm32f0xx_adc.h" path="stm_lib/inc/stm32f0xx_adc.h" type="1"/>
+    <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
+    <File name="cmsis_boot/startup/startup_stm32f0xx.s" path="cmsis_boot/startup/startup_stm32f0xx.s" type="1"/>
+    <File name="stm_lib/inc/stm32f0xx_gpio.h" path="stm_lib/inc/stm32f0xx_gpio.h" type="1"/>
+    <File name="cmsis_boot" path="" type="2"/>
+    <File name="cmsis_boot/system_stm32f0xx.c" path="cmsis_boot/system_stm32f0xx.c" type="1"/>
+    <File name="stm_lib/inc/stm32f0xx_tim.h" path="stm_lib/inc/stm32f0xx_tim.h" type="1"/>
+    <File name="stm_lib/src/stm32f0xx_rcc.c" path="stm_lib/src/stm32f0xx_rcc.c" type="1"/>
+    <File name="stm_lib/inc/stm32f0xx_flash.h" path="stm_lib/inc/stm32f0xx_flash.h" type="1"/>
+    <File name="cmsis_boot/startup" path="" type="2"/>
+    <File name="cmsis_core" path="" type="2"/>
+    <File name="stm_lib/inc/stm32f0xx_spi.h" path="stm_lib/inc/stm32f0xx_spi.h" type="1"/>
+    <File name="stm_lib/src" path="" type="2"/>
+    <File name="cmsis_boot/stm32f0xx.h" path="cmsis_boot/stm32f0xx.h" type="1"/>
+    <File name="stm_lib" path="" type="2"/>
+    <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
+    <File name="stm_lib/src/stm32f0xx_spi.c" path="stm_lib/src/stm32f0xx_spi.c" type="1"/>
+    <File name="stm_lib/src/stm32f0xx_flash.c" path="stm_lib/src/stm32f0xx_flash.c" type="1"/>
+    <File name="cmsis_boot/system_stm32f0xx.h" path="cmsis_boot/system_stm32f0xx.h" type="1"/>
+    <File name="stm_lib/src/stm32f0xx_adc.c" path="stm_lib/src/stm32f0xx_adc.c" type="1"/>
+    <File name="stm_lib/inc/stm32f0xx_rcc.h" path="stm_lib/inc/stm32f0xx_rcc.h" type="1"/>
+    <File name="stm_lib/src/stm32f0xx_tim.c" path="stm_lib/src/stm32f0xx_tim.c" type="1"/>
+    <File name="stm_lib/inc" path="" type="2"/>
+    <File name="stm_lib/src/stm32f0xx_gpio.c" path="stm_lib/src/stm32f0xx_gpio.c" type="1"/>
+    <File name="main.c" path="main.c" type="1"/>
+    <File name="cmsis_core/core_cm0.c" path="cmsis_core/core_cm0.c" type="1"/>
+  </Files>
+</Project>
