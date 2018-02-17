@@ -1,5 +1,5 @@
 #######################################################################
-# Makefile for STM32F4 Discovery board projects
+# Makefile for STM32F0 Discovery board projects
 
 PROJECT = temp
 OPENOCD_SCRIPT_DIR ?= /usr/share/openocd/scripts
