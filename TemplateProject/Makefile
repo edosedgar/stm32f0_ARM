@@ -19,6 +19,8 @@ OBJS = $(SOURCES_S:.s=.o) $(SOURCES_C:.c=.o)
 
 INCLUDES += -I src
 INCLUDES += -I includes
+INCLUDES += -I stm32f0_peripheral/Inc
+INCLUDES += -I stm32f0_peripheral/Src
 
 DEFINES = -DSTM32 -DSTM32F0 -DSTM32F051x8 -DHEAP_SIZE=$(HEAP_SIZE)
 
