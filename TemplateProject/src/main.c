@@ -5,7 +5,6 @@
 
 void SystemClock_Config(void);
 
-int
 main(void) {
 
         SystemClock_Config();
@@ -13,6 +12,8 @@ main(void) {
 
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
+
+        LL_GPIO_WriteOutputPort(GPIOC, 0x0000);
 
         while (1);
 }
@@ -59,7 +60,7 @@ SystemClock_Config() {
 
         /* Update CMSIS variable (which can be updated also
          * through SystemCoreClockUpdate function) */
-        SystemCoreClock = 168000000;
+        SystemCoreClock = 48000000;
 }
 
 void
