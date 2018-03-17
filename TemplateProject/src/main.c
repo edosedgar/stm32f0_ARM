@@ -4,9 +4,10 @@
 #include "stm32f0xx_ll_system.h"
 
 void SystemClock_Config(void);
+void delay(void);
 
+int
 main(void) {
-
         SystemClock_Config();
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
 
@@ -15,9 +16,23 @@ main(void) {
 
         LL_GPIO_WriteOutputPort(GPIOC, 0x0000);
 
-        while (1);
+        while (1) {
+                delay();
+                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_9);
+        }
+        return 0;
 }
 
+__attribute__((naked)) void delay(void) {
+        asm ("push {r7, lr}");
+        asm ("ldr r6, [pc, #8]");
+        asm ("sub r6, #1");
+        asm ("cmp r6, #0");
+        asm ("bne delay+0x4");
+        asm ("pop {r7, pc}");
+        asm (".word 0x5b8d80"); //6000000
+        //asm (".word 0x927c00"); //9600000
+}
 /**
   * System Clock Configuration
   * The system Clock is configured as follow :
@@ -69,6 +84,7 @@ NMI_Handler(void) {
 
 void
 HardFault_Handler(void) {
+        LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
         while (1);
 }
 
