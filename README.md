@@ -10,4 +10,4 @@ having been a Windows user (yes, it is gross, because it is not pure and there
 are a lot of strange files with weird extensions, but let it be as is)
 2) doc - documentation
 3) TemplateProject - the new and the purest project ever, feel free to use it
-as a ground for your project
+as a template
