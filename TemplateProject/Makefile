@@ -78,7 +78,7 @@ exti.elf: ./examples/EXTI_PA0_button.o $(EX_OBJS)
 	$(LD) $^ $(LDFLAGS) -o $@
 	$(SIZE) -A $@
 
-usart.elf: ./examples/USART_TX.o $(EX_OBJS)
+usart.elf: ./examples/USART.o $(EX_OBJS)
 	$(LD) $^ $(LDFLAGS) -o $@
 	$(SIZE) -A $@
 
