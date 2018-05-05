@@ -3,36 +3,6 @@
 #include "stm32f0xx_ll_rcc.h"
 #include "stm32f0xx_ll_system.h"
 
-void SystemClock_Config(void);
-void delay(void);
-
-int
-main(void) {
-        SystemClock_Config();
-        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
-
-        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
-        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
-
-        LL_GPIO_WriteOutputPort(GPIOC, 0x0000);
-
-        while (1) {
-                delay();
-                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_9);
-        }
-        return 0;
-}
-
-__attribute__((naked)) void delay(void) {
-        asm ("push {r7, lr}");
-        asm ("ldr r6, [pc, #8]");
-        asm ("sub r6, #1");
-        asm ("cmp r6, #0");
-        asm ("bne delay+0x4");
-        asm ("pop {r7, pc}");
-        asm (".word 0x5b8d80"); //6000000
-        //asm (".word 0x927c00"); //9600000
-}
 /**
   * System Clock Configuration
   * The system Clock is configured as follow :
@@ -45,9 +15,8 @@ __attribute__((naked)) void delay(void) {
   *    PLLMUL                         = 12
   *    Flash Latency(WS)              = 1
   */
-
-void
-SystemClock_Config() {
+static void
+rcc_config(void) {
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -104,4 +73,31 @@ SysTick_Handler(void) {
                 LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
                 tick = 0;
         }
+}
+
+__attribute__((naked)) static void
+delay(void) {
+        asm ("push {r7, lr}");
+        asm ("ldr r6, [pc, #8]");
+        asm ("sub r6, #1");
+        asm ("cmp r6, #0");
+        asm ("bne delay+0x4");
+        asm ("pop {r7, pc}");
+        asm (".word 0x5b8d80"); //6000000
+        //asm (".word 0x927c00"); //9600000
+}
+
+int
+main(void) {
+        rcc_config();
+
+        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
+        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
+        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
+
+        while (1) {
+                delay();
+                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_9);
+        }
+        return 0;
 }
