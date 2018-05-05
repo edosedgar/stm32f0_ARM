@@ -3,6 +3,29 @@
 #include "stm32f0xx_ll_rcc.h"
 #include "stm32f0xx_ll_system.h"
 #include "stm32f0xx_ll_usart.h"
+#include "xprintf.h"
+
+static char
+usart_getc(void) {
+        char byte;
+
+        if (LL_USART_IsActiveFlag_RXNE(USART1))
+                byte = LL_USART_ReceiveData8(USART1);
+        return byte;
+}
+
+static void
+usart_putc(char symbol) {
+        LL_USART_TransmitData8(USART1, symbol);
+        while (!LL_USART_IsActiveFlag_TC(USART1));
+}
+
+static void
+printf_config(void) {
+        xdev_out(usart_putc);
+        xdev_in(usart_getc);
+        return;
+}
 
 static void
 gpio_config(void) {
@@ -68,6 +91,7 @@ usart_config(void) {
   *    PLLMUL                         = 12
   *    Flash Latency(WS)              = 1
   */
+
 static void
 rcc_config() {
         /* Set FLASH latency */
@@ -124,18 +148,13 @@ SysTick_Handler(void) {
 
 int
 main(void) {
-        uint8_t byte = 0x00;
-
         rcc_config();
         gpio_config();
         usart_config();
+        printf_config();
 
-        while (1)
-                if (LL_USART_IsActiveFlag_RXNE(USART1))
-                {
-                        byte = LL_USART_ReceiveData8(USART1);
-                        LL_USART_TransmitData8(USART1, byte);
-                        while (!LL_USART_IsActiveFlag_TC(USART1));
-                }
+        xprintf("I am Groot\n");
+
+        while (1);
         return 0;
 }

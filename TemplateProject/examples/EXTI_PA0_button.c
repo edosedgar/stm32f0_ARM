@@ -4,24 +4,6 @@
 #include "stm32f0xx_ll_system.h"
 #include "stm32f0xx_ll_exti.h"
 
-void SystemClock_Config(void);
-void EXTI0_1_IRQHandler(void);
-void UserButton_Init(void);
-
-int
-main(void) {
-        SystemClock_Config();
-        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
-
-        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
-        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
-
-        UserButton_Init();
-
-        while (1);
-        return 0;
-}
-
 /**
   * System Clock Configuration
   * The system Clock is configured as follow :
@@ -35,8 +17,8 @@ main(void) {
   *    Flash Latency(WS)              = 1
   */
 
-void
-SystemClock_Config() {
+static void
+rcc_init() {
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -67,15 +49,24 @@ SystemClock_Config() {
         SystemCoreClock = 48000000;
 }
 
-void UserButton_Init(void) {
-        /* Enable the BUTTON Clock */
+static void
+exti_init(void) {
+        /*
+         * Setting PIN A0
+         */
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
         LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_0, LL_GPIO_MODE_INPUT);
         LL_GPIO_SetPinPull(GPIOA, LL_GPIO_PIN_0, LL_GPIO_PULL_NO);
+        /*
+         * Setting EXTI0
+         */
         LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_SYSCFG);
         LL_SYSCFG_SetEXTISource(LL_SYSCFG_EXTI_PORTA, LL_SYSCFG_EXTI_LINE0);
         LL_EXTI_EnableIT_0_31(LL_EXTI_LINE_0);
         LL_EXTI_EnableFallingTrig_0_31(LL_EXTI_LINE_0);
+        /*
+         * Setting interrupts
+         */
         NVIC_EnableIRQ(EXTI0_1_IRQn);
         NVIC_SetPriority(EXTI0_1_IRQn, 0);
 }
@@ -84,7 +75,8 @@ void
 NMI_Handler(void) {
 }
 
-void HardFault_Handler(void) {
+void
+HardFault_Handler(void) {
         while (1);
 }
 
@@ -106,10 +98,28 @@ SysTick_Handler(void) {
         }
 }
 
-//button interrupt handler
+/*
+ * Button interrupt handler
+ */
 void EXTI0_1_IRQHandler(void)
 {
         LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_9);
         //don't forget to add this line at the end
         LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_0);
+}
+
+int
+main(void) {
+        rcc_init();
+        exti_init();
+
+        /*
+         * Setting USER LED PC8 and PC9
+         */
+        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
+        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
+        LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
+
+        while (1);
+        return 0;
 }

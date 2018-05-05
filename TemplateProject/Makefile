@@ -2,7 +2,7 @@
 # Makefile for STM32F0 Discovery board projects
 
 PROJECT = temp
-EXAMPLES = exti usart adcdma
+EXAMPLES = exti usart adcdma printf
 OPENOCD_SCRIPT_DIR ?= /usr/share/openocd/scripts
 HEAP_SIZE = 0x400
 
@@ -68,7 +68,7 @@ all: $(PROJECT).bin $(PROJECT).asm
 
 clean:
 	$(RM) $(OBJS) $(PROJECT).elf $(PROJECT).bin $(PROJECT).asm \
-	$(EXAMPLES:=.bin) $(EXAMPLES:=.elf) ./examples/*.o
+	$(EXAMPLES:=.bin) $(EXAMPLES:=.elf) ./examples/*.o ./src/*.o
 
 # Examples
 
@@ -83,6 +83,10 @@ usart.elf: ./examples/USART.o $(EX_OBJS)
 	$(SIZE) -A $@
 
 adcdma.elf: ./examples/ADC_continuous_DMA.o $(EX_OBJS)
+	$(LD) $^ $(LDFLAGS) -o $@
+	$(SIZE) -A $@
+
+printf.elf: ./examples/USART_printf.o ./src/xprintf.o $(EX_OBJS)
 	$(LD) $^ $(LDFLAGS) -o $@
 	$(SIZE) -A $@
 

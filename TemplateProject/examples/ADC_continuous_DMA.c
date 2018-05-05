@@ -5,40 +5,29 @@
 #include "stm32f0xx_ll_adc.h"
 #include "stm32f0xx_ll_dma.h"
 
-char ADCBuffer[16] = {0};
+char adc_buffer[16] = {0};
 
-void config_RCC(void);
-void config_ADC2DMA(void);
-void config_IO(void);
-
-int
-main(void) {
-        config_RCC();
-        config_IO();
-        config_ADC2DMA();
-
-        /* Being pressed button pulls pin to VCC, hence ADC value is
-         * greater than 128. To be concise, it is equal to 255. */
-        while (1) {
-            if (ADCBuffer[0] > 128)
-                LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_8);
-            else
-                LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_8);
-        }
-        return 0;
-}
-
-void config_IO(void) {
+static void
+gpio_config(void) {
+        /*
+         * Setting Clock
+         */
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
-
+        /*
+         * Setting LEDs
+         */
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
+        /*
+         * Setting AIN0
+         */
         LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_0, LL_GPIO_MODE_ANALOG);
         return;
 }
 
-void config_ADC2DMA(void) {
+static void
+adc2dma_config(void) {
         /* Turn on ADC1 as peripheral */
         LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_ADC1);
         /* Clock selection */
@@ -80,7 +69,7 @@ void config_ADC2DMA(void) {
                                        LL_DMA_PRIORITY_VERYHIGH);
         LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_1, 16);
         LL_DMA_SetPeriphAddress(DMA1, LL_DMA_CHANNEL_1, (uint32_t)&(ADC1->DR));
-        LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_1, (uint32_t)ADCBuffer);
+        LL_DMA_SetMemoryAddress(DMA1, LL_DMA_CHANNEL_1, (uint32_t)adc_buffer);
         LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_1);
         /* Enable ADC conversion */
         LL_ADC_REG_StartConversion(ADC1);
@@ -101,8 +90,8 @@ void config_ADC2DMA(void) {
   *    Flash Latency(WS)              = 1
   */
 
-void
-config_RCC() {
+static void
+rcc_config() {
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -151,7 +140,22 @@ void
 PendSV_Handler(void) {
 }
 
-int tick;
 void
 SysTick_Handler(void) {
+}
+
+int
+main(void) {
+        rcc_config();
+        gpio_config();
+        adc2dma_config();
+
+        /* Being pressed button pulls pin to VCC, hence ADC value is
+         * greater than 128. To be concise, it is equal to 255. */
+        while (1)
+                if (adc_buffer[0] > 128)
+                        LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_8);
+                else
+                        LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_8);
+        return 0;
 }
