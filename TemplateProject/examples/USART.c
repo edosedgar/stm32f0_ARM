@@ -5,7 +5,7 @@
 #include "stm32f0xx_ll_usart.h"
 
 static void
-gpio_config(void) {
+led_config(void) {
         /*
          * Setting clock
          */
@@ -127,7 +127,7 @@ main(void) {
         uint8_t byte = 0x00;
 
         rcc_config();
-        gpio_config();
+        led_config();
         usart_config();
 
         while (1)

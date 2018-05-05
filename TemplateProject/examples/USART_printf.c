@@ -28,7 +28,7 @@ printf_config(void) {
 }
 
 static void
-gpio_config(void) {
+led_config(void) {
         /*
          * Setting clock
          */
@@ -149,7 +149,7 @@ SysTick_Handler(void) {
 int
 main(void) {
         rcc_config();
-        gpio_config();
+        led_config();
         usart_config();
         printf_config();
 

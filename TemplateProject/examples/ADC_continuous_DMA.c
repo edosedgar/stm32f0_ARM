@@ -8,26 +8,29 @@
 char adc_buffer[16] = {0};
 
 static void
-gpio_config(void) {
+led_config(void) {
         /*
          * Setting Clock
          */
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
-        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
         /*
          * Setting LEDs
          */
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
-        /*
-         * Setting AIN0
-         */
-        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_0, LL_GPIO_MODE_ANALOG);
         return;
 }
 
 static void
 adc2dma_config(void) {
+        /*
+         * Setting GPIO AIN0
+         */
+        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
+        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_0, LL_GPIO_MODE_ANALOG);
+        /*
+         * Setting ADC
+         */
         /* Turn on ADC1 as peripheral */
         LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_ADC1);
         /* Clock selection */
@@ -147,7 +150,7 @@ SysTick_Handler(void) {
 int
 main(void) {
         rcc_config();
-        gpio_config();
+        led_config();
         adc2dma_config();
 
         /* Being pressed button pulls pin to VCC, hence ADC value is
