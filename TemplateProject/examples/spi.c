@@ -2,30 +2,7 @@
 #include "stm32f0xx_ll_gpio.h"
 #include "stm32f0xx_ll_rcc.h"
 #include "stm32f0xx_ll_system.h"
-#include "stm32f0xx_ll_usart.h"
-#include "xprintf.h"
-
-static char
-usart_getc(void) {
-        char byte;
-
-        if (LL_USART_IsActiveFlag_RXNE(USART1))
-                byte = LL_USART_ReceiveData8(USART1);
-        return byte;
-}
-
-static void
-usart_putc(char symbol) {
-        LL_USART_TransmitData8(USART1, symbol);
-        while (!LL_USART_IsActiveFlag_TC(USART1));
-}
-
-static void
-printf_config(void) {
-        xdev_out(usart_putc);
-        xdev_in(usart_getc);
-        return;
-}
+#include "stm32f0xx_ll_spi.h"
 
 static void
 gpio_config(void) {
@@ -33,6 +10,7 @@ gpio_config(void) {
          * Setting clock
          */
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
+        LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
         /*
          * Setting LED pins
          */
@@ -42,40 +20,37 @@ gpio_config(void) {
 }
 
 static void
-usart_config(void) {
+spi_config(void) {
         /*
-         * Setting USART pins
+         * Init GPIO
          */
         LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
-        //USART1_TX
-        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_9, LL_GPIO_MODE_ALTERNATE);
-        LL_GPIO_SetAFPin_8_15(GPIOA, LL_GPIO_PIN_9, LL_GPIO_AF_1);
-        LL_GPIO_SetPinSpeed(GPIOA, LL_GPIO_PIN_9, LL_GPIO_SPEED_FREQ_HIGH);
-        //USART1_RX
-        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_10, LL_GPIO_MODE_ALTERNATE);
-        LL_GPIO_SetAFPin_8_15(GPIOA, LL_GPIO_PIN_10, LL_GPIO_AF_1);
-        LL_GPIO_SetPinSpeed(GPIOA, LL_GPIO_PIN_10, LL_GPIO_SPEED_FREQ_HIGH);
+        //SPI_MOSI
+        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_7, LL_GPIO_MODE_ALTERNATE);
+        LL_GPIO_SetAFPin_0_7(GPIOA, LL_GPIO_PIN_7, LL_GPIO_AF_0);
+        LL_GPIO_SetPinSpeed(GPIOA, LL_GPIO_PIN_7, LL_GPIO_SPEED_FREQ_HIGH);
+        //SPI_MISO
+        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_6, LL_GPIO_MODE_ALTERNATE);
+        LL_GPIO_SetAFPin_0_7(GPIOA, LL_GPIO_PIN_6, LL_GPIO_AF_0);
+        //SPI_SCK
+        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_5, LL_GPIO_MODE_ALTERNATE);
+        LL_GPIO_SetAFPin_0_7(GPIOA, LL_GPIO_PIN_5, LL_GPIO_AF_0);
+        LL_GPIO_SetPinSpeed(GPIOA, LL_GPIO_PIN_5, LL_GPIO_SPEED_FREQ_HIGH);
+        //SPI_CS
+        LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_4, LL_GPIO_MODE_ALTERNATE);
+        LL_GPIO_SetAFPin_0_7(GPIOA, LL_GPIO_PIN_4, LL_GPIO_AF_0);
+        LL_GPIO_SetPinSpeed(GPIOA, LL_GPIO_PIN_4, LL_GPIO_SPEED_FREQ_HIGH);
         /*
-         * USART Set clock source
+         * Init SPI
          */
-        LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_USART1);
-        LL_RCC_SetUSARTClockSource(LL_RCC_USART1_CLKSOURCE_PCLK1);
-        /*
-         * USART Setting
-         */
-        LL_USART_SetTransferDirection(USART1, LL_USART_DIRECTION_TX_RX);
-        LL_USART_SetParity(USART1, LL_USART_PARITY_NONE);
-        LL_USART_SetDataWidth(USART1, LL_USART_DATAWIDTH_8B);
-        LL_USART_SetStopBitsLength(USART1, LL_USART_STOPBITS_1);
-        LL_USART_SetTransferBitOrder(USART1, LL_USART_BITORDER_LSBFIRST);
-        LL_USART_SetBaudRate(USART1, SystemCoreClock,
-                             LL_USART_OVERSAMPLING_16, 115200);
-        /*
-         * USART turn on
-         */
-        LL_USART_Enable(USART1);
-        while (!(LL_USART_IsActiveFlag_TEACK(USART1) &&
-                 LL_USART_IsActiveFlag_REACK(USART1)));
+        LL_APB1_GRP2_EnableClock(LL_APB1_GRP2_PERIPH_SPI1);
+        LL_SPI_SetMode(SPI1, LL_SPI_MODE_MASTER);
+        LL_SPI_SetBaudRatePrescaler(SPI1, LL_SPI_BAUDRATEPRESCALER_DIV8);
+        LL_SPI_SetTransferBitOrder(SPI1, LL_SPI_MSB_FIRST);
+        LL_SPI_SetDataWidth(SPI1, LL_SPI_DATAWIDTH_8BIT);
+        LL_SPI_SetNSSMode(SPI1, LL_SPI_NSS_HARD_OUTPUT);
+        LL_SPI_EnableNSSPulseMgt(SPI1);
+        LL_SPI_Enable(SPI1);
         return;
 }
 
@@ -91,7 +66,6 @@ usart_config(void) {
   *    PLLMUL                         = 12
   *    Flash Latency(WS)              = 1
   */
-
 static void
 rcc_config() {
         /* Set FLASH latency */
@@ -146,15 +120,33 @@ void
 SysTick_Handler(void) {
 }
 
+static inline void
+sendSPI(uint8_t value) {
+        LL_SPI_TransmitData8(SPI1, value);
+        while (!LL_SPI_IsActiveFlag_TXE(SPI1));
+        return;
+}
+
+static inline uint8_t
+recvSPI() {
+        uint8_t byte;
+
+        while (!LL_SPI_IsActiveFlag_RXNE(SPI1))
+        byte = LL_SPI_ReceiveData8(SPI1);
+        return byte;
+}
+
 int
 main(void) {
+        uint8_t byte = 0x00;
+
         rcc_config();
         gpio_config();
-        usart_config();
-        printf_config();
+        spi_config();
 
-        xprintf("I am Groot\n");
-
-        while (1);
+        while (1) {
+                byte = recvSPI();
+                sendSPI(byte);
+        }
         return 0;
 }
