@@ -17,8 +17,8 @@
   *    Flash Latency(WS)              = 1
   */
 
-static void
-rcc_init() {
+static void rcc_init()
+{
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -49,8 +49,8 @@ rcc_init() {
         SystemCoreClock = 48000000;
 }
 
-static void
-exti_init(void) {
+static void exti_init(void)
+{
         /*
          * Setting PIN A0
          */
@@ -72,25 +72,8 @@ exti_init(void) {
 }
 
 void
-NMI_Handler(void) {
-}
-
-void
-HardFault_Handler(void) {
-        while (1);
-}
-
-void
-SVC_Handler(void) {
-}
-
-void
-PendSV_Handler(void) {
-}
-
-int tick;
-void
 SysTick_Handler(void) {
+        static int tick = 0;
         tick++;
         if (tick == 1000) {
                 LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
@@ -108,8 +91,8 @@ void EXTI0_1_IRQHandler(void)
         LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_0);
 }
 
-int
-main(void) {
+int main(void)
+{
         rcc_init();
         exti_init();
 

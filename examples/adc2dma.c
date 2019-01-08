@@ -7,8 +7,8 @@
 
 char adc_buffer[16] = {0};
 
-static void
-led_config(void) {
+static void led_config(void)
+{
         /*
          * Setting Clock
          */
@@ -21,8 +21,8 @@ led_config(void) {
         return;
 }
 
-static void
-adc2dma_config(void) {
+static void adc2dma_config(void)
+{
         /*
          * Setting GPIO AIN0
          */
@@ -76,7 +76,6 @@ adc2dma_config(void) {
         LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_1);
         /* Enable ADC conversion */
         LL_ADC_REG_StartConversion(ADC1);
-
         return;
 }
 
@@ -93,8 +92,8 @@ adc2dma_config(void) {
   *    Flash Latency(WS)              = 1
   */
 
-static void
-rcc_config() {
+static void rcc_config()
+{
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -125,30 +124,14 @@ rcc_config() {
         SystemCoreClock = 48000000;
 }
 
-void
-NMI_Handler(void) {
-}
-
-void
-HardFault_Handler(void) {
+void HardFault_Handler(void)
+{
         LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
         while (1);
 }
 
-void
-SVC_Handler(void) {
-}
-
-void
-PendSV_Handler(void) {
-}
-
-void
-SysTick_Handler(void) {
-}
-
-int
-main(void) {
+int main(void)
+{
         rcc_config();
         led_config();
         adc2dma_config();

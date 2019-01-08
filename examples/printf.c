@@ -5,8 +5,8 @@
 #include "stm32f0xx_ll_usart.h"
 #include "xprintf.h"
 
-static char
-usart_getc(void) {
+static char usart_getc(void)
+{
         char byte;
 
         if (LL_USART_IsActiveFlag_RXNE(USART1))
@@ -14,21 +14,21 @@ usart_getc(void) {
         return byte;
 }
 
-static void
-usart_putc(char symbol) {
+static void usart_putc(char symbol)
+{
         LL_USART_TransmitData8(USART1, symbol);
         while (!LL_USART_IsActiveFlag_TC(USART1));
 }
 
-static void
-printf_config(void) {
+static void printf_config(void)
+{
         xdev_out(usart_putc);
         xdev_in(usart_getc);
         return;
 }
 
-static void
-led_config(void) {
+static void led_config(void)
+{
         /*
          * Setting clock
          */
@@ -41,8 +41,8 @@ led_config(void) {
         return;
 }
 
-static void
-usart_config(void) {
+static void usart_config(void)
+{
         /*
          * Setting USART pins
          */
@@ -92,8 +92,8 @@ usart_config(void) {
   *    Flash Latency(WS)              = 1
   */
 
-static void
-rcc_config() {
+static void rcc_config()
+{
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -124,30 +124,14 @@ rcc_config() {
         SystemCoreClock = 48000000;
 }
 
-void
-NMI_Handler(void) {
-}
-
-void
-HardFault_Handler(void) {
+void HardFault_Handler(void)
+{
         LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
         while (1);
 }
 
-void
-SVC_Handler(void) {
-}
-
-void
-PendSV_Handler(void) {
-}
-
-void
-SysTick_Handler(void) {
-}
-
-int
-main(void) {
+int main(void)
+{
         rcc_config();
         led_config();
         uart_config();

@@ -4,8 +4,8 @@
 #include "stm32f0xx_ll_system.h"
 #include "stm32f0xx_ll_usart.h"
 
-static void
-led_config(void) {
+static void led_config(void)
+{
         /*
          * Setting clock
          */
@@ -18,8 +18,8 @@ led_config(void) {
         return;
 }
 
-static void
-usart_config(void) {
+static void usart_config(void)
+{
         /*
          * Setting USART pins
          */
@@ -68,8 +68,8 @@ usart_config(void) {
   *    PLLMUL                         = 12
   *    Flash Latency(WS)              = 1
   */
-static void
-rcc_config() {
+static void rcc_config()
+{
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -100,42 +100,26 @@ rcc_config() {
         SystemCoreClock = 48000000;
 }
 
-void
-NMI_Handler(void) {
-}
-
-void
-HardFault_Handler(void) {
+void HardFault_Handler(void)
+{
         LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
         while (1);
 }
 
-void
-SVC_Handler(void) {
-}
-
-void
-PendSV_Handler(void) {
-}
-
-void
-SysTick_Handler(void) {
-}
-
-int
-main(void) {
+int main(void)
+{
         uint8_t byte = 0x00;
 
         rcc_config();
         led_config();
         usart_config();
 
-        while (1)
-                if (LL_USART_IsActiveFlag_RXNE(USART1))
-                {
+        while (1) {
+                if (LL_USART_IsActiveFlag_RXNE(USART1)) {
                         byte = LL_USART_ReceiveData8(USART1);
                         LL_USART_TransmitData8(USART1, byte);
                         while (!LL_USART_IsActiveFlag_TC(USART1));
                 }
+        }
         return 0;
 }

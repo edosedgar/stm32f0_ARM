@@ -4,8 +4,8 @@
 #include "stm32f0xx_ll_system.h"
 #include "stm32f0xx_ll_spi.h"
 
-static void
-led_config(void) {
+static void led_config(void)
+{
         /*
          * Setting clock
          */
@@ -19,8 +19,8 @@ led_config(void) {
         return;
 }
 
-static void
-spi_config(void) {
+static void spi_config(void)
+{
         /*
          * Init GPIO
          */
@@ -66,8 +66,7 @@ spi_config(void) {
   *    PLLMUL                         = 12
   *    Flash Latency(WS)              = 1
   */
-static void
-rcc_config() {
+static void rcc_config() {
         /* Set FLASH latency */
         LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 
@@ -98,37 +97,21 @@ rcc_config() {
         SystemCoreClock = 48000000;
 }
 
-void
-NMI_Handler(void) {
-}
-
-void
-HardFault_Handler(void) {
+void HardFault_Handler(void)
+{
         LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
         while (1);
 }
 
-void
-SVC_Handler(void) {
-}
-
-void
-PendSV_Handler(void) {
-}
-
-void
-SysTick_Handler(void) {
-}
-
-static inline void
-sendSPI(uint8_t value) {
+static inline void sendSPI(uint8_t value)
+{
         LL_SPI_TransmitData8(SPI1, value);
         while (!LL_SPI_IsActiveFlag_TXE(SPI1));
         return;
 }
 
-static inline uint8_t
-recvSPI() {
+static inline uint8_t recvSPI()
+{
         uint8_t byte;
 
         while (!LL_SPI_IsActiveFlag_RXNE(SPI1))
@@ -136,8 +119,8 @@ recvSPI() {
         return byte;
 }
 
-int
-main(void) {
+int main(void)
+{
         uint8_t byte = 0x00;
 
         rcc_config();
