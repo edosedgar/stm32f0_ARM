@@ -29,11 +29,21 @@ family of processors.
 The PPA we want in this case is from the GCC ARM Embedded Maintainer’s
 team.
 
+##### Linux
+
 ```
 sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update
 sudo apt-get install gcc-arm-embedded
 ```
+
+##### MacOs
+
+```
+brew tap ArmMbed/homebrew-formulae
+brew install arm-none-eabi-gcc
+```
+
 #### Debugger
 
 Bare metal GNU debugger for embedded ARM chips using Cortex-M0/M0+/M3/M4,
@@ -101,4 +111,17 @@ Every thing can be built from the top of directory.
 cd stlink
 make
 cd build/Release && make install DESTDIR=_install
+```
+
+Stlink installation requires cmake, so if you don't have one:
+
+#### Linux
+
+```
+sudo apt-get install cmake
+```
+#### MacOs
+
+```
+brew install cmake
 ```
