@@ -92,7 +92,7 @@ arm-none-eabi-gcc         arm-none-eabi-ld
 arm-none-eabi-gcc-7.3.1   arm-none-eabi-ld.bfd
 ```
 
-###  OpenOCD
+### OpenOCD (optional)
 
 OpenOCD is a free on chip debug solution for targets based on ARM. It is a server
 which opens a GDB remote target port and a Telnet port.
@@ -108,7 +108,7 @@ The following commands generate and install the program.
  sudo make install
 ```
 
-### Installation st-link
+### Installation st-link (recommended)
 
 Stlink package is the software for the ST-Link programmer that works with many
 ST boards. On the discovery boards, the programmer is embedded at the
