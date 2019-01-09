@@ -110,7 +110,7 @@ Every thing can be built from the top of directory.
 ```
 cd stlink
 make
-cd build/Release && make install DESTDIR=_install
+cd build/Release && make install
 ```
 
 Stlink installation requires cmake, so if you don't have one:
