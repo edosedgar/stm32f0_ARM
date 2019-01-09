@@ -29,12 +29,20 @@ family of processors.
 The PPA we want in this case is from the GCC ARM Embedded Maintainer’s
 team.
 
-##### Linux
+##### Linux (Ubuntu)
 
 ```
 sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update
 sudo apt-get install gcc-arm-embedded
+```
+
+##### Linux (Fedora)
+
+```
+sudo yum install arm-none-eabi-gcc-cs
+sudo yum install arm-none-eabi-binutils-cs
+sudo yum install arm-none-eabi-newlib
 ```
 
 ##### MacOs
@@ -51,8 +59,16 @@ Cortex-R4/R5/R7 and Cortex-A* processors. GDB is a source-level debugger,
 capable of breaking programs at any specific line, displaying variable values,
 and determining where errors occurred.
 
+##### Linux (Ubuntu)
+
 ```
 sudo apt-get install gdb-arm-none-eabi
+```
+
+##### Linux (Fedora)
+
+```
+sudo yum install arm-none-eabi-gdb
 ```
 
 If it installs correctly, doing autocomplete in the terminal like so:
@@ -120,8 +136,17 @@ Stlink installation requires cmake, so if you don't have one:
 ```
 sudo apt-get install cmake
 ```
+
 #### MacOs
 
 ```
 brew install cmake
+```
+
+In Fedora, st-link software can be installed from repository:
+
+#### Linux (Fedora)
+
+```
+sudo yum install stlink
 ```
