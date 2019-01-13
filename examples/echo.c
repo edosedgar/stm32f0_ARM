@@ -126,8 +126,7 @@ void SysTick_Handler(void)
 
 void USART1_IRQHandler(void)
 {
-        if (LL_USART_IsActiveFlag_RXNE(USART1))
-        {
+        if (LL_USART_IsActiveFlag_RXNE(USART1)) {
                 byte_received = 1;
                 byte = LL_USART_ReceiveData8(USART1);
         }

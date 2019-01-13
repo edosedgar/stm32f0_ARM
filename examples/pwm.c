@@ -59,16 +59,17 @@ static void gpio_config(void)
          */
         LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_ALTERNATE);
         LL_GPIO_SetAFPin_8_15(GPIOC, LL_GPIO_PIN_8, LL_GPIO_AF_1);
-        LL_GPIO_SetPinOutputType(GPIOC, LL_GPIO_PIN_8, LL_GPIO_OUTPUT_PUSHPULL);
+        LL_GPIO_SetPinOutputType(GPIOC, LL_GPIO_PIN_8,
+                                 LL_GPIO_OUTPUT_PUSHPULL);
         return;
 }
 
 static void tim3_config(void)
 {
         LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM3);
-        
+
         LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH3);
-        
+
         LL_TIM_SetCounterMode(TIM3, LL_TIM_COUNTERMODE_UP);
         LL_TIM_SetAutoReload(TIM3, 48000);
         LL_TIM_SetPrescaler(TIM3, 1);
@@ -76,12 +77,11 @@ static void tim3_config(void)
         LL_TIM_OC_SetMode(TIM3, LL_TIM_CHANNEL_CH3, LL_TIM_OCMODE_PWM1);
         LL_TIM_OC_EnableFast(TIM3, LL_TIM_CHANNEL_CH3);
         LL_TIM_OC_EnablePreload(TIM3, LL_TIM_CHANNEL_CH3);
-        LL_TIM_OC_SetCompareCH3(TIM3, 48000 * 0.1);
+        LL_TIM_OC_SetCompareCH3(TIM3, 48000 * 1);
 
         LL_TIM_GenerateEvent_UPDATE(TIM3);
 
         LL_TIM_EnableCounter(TIM3);
-
         return;
 }
 
@@ -91,23 +91,65 @@ void HardFault_Handler(void)
         while (1);
 }
 
-const int period = 2000;
-const int slice = 2000/6;
-int current_pwm = 0;
 void SysTick_Handler(void)
 {
-        static int tick = 0;
-        tick++;
-        if (tick == period) {
-                tick = 0;
-        }
-        current_pwm = tick < slice ? tick :
-                      (tick >= slice) && (tick < 2 * slice) ? 2 * slice - tick :
-                      (tick >= 2 * slice) && (tick < 3 * slice) ? tick - 2 * slice :
-                      (tick >= 3 * slice) && (tick < 6 * slice) ? (6 * slice - tick)/3 :
-                      0;
-        LL_TIM_OC_SetCompareCH3(TIM3, 48000 * current_pwm / slice);
+        static int step = 0;
+        static int current_pwm = 0;
 
+
+        switch (step)
+        {
+        case 0: {
+                /*
+                 * Turn on the led smoothly
+                 */
+                current_pwm += 240;
+                if (current_pwm == 48000)
+                        step++;
+                LL_TIM_OC_SetCompareCH3(TIM3, current_pwm);
+                break;
+        }
+        case 1: {
+                /*
+                 * Turn off the led smoothly
+                 */
+                current_pwm -= 240;
+                if (!current_pwm)
+                        step++;
+                LL_TIM_OC_SetCompareCH3(TIM3, current_pwm);
+                break;
+        }
+        case 2: {
+                /*
+                 * Turn on the led smoothly
+                 */
+                current_pwm += 240;
+                if (current_pwm == 48000)
+                        step++;
+                LL_TIM_OC_SetCompareCH3(TIM3, current_pwm);
+                break;
+        }
+        case 3: {
+                /*
+                 * Turn on the led smoothly
+                 */
+                current_pwm -= 240;
+                if (!current_pwm)
+                        step++;
+                LL_TIM_OC_SetCompareCH3(TIM3, current_pwm);
+                break;
+        }
+        case 4: {
+                /*
+                 * Wait
+                 */
+                current_pwm += 240;
+                if (current_pwm == 192000) {
+                        step = 0;
+                        current_pwm = 0;
+                }
+        }
+        }
 }
 
 

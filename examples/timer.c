@@ -60,7 +60,7 @@ static void gpio_config(void)
 static void tim3_config(void)
 {
         LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM3);
-        
+
         LL_TIM_SetCounterMode(TIM3, LL_TIM_COUNTERMODE_UP);
         LL_TIM_SetAutoReload(TIM3, 1000);
         LL_TIM_SetPrescaler(TIM3, 47999);
@@ -70,7 +70,6 @@ static void tim3_config(void)
         NVIC_EnableIRQ(TIM3_IRQn);
 
         LL_TIM_EnableCounter(TIM3);
-
         return;
 }
 

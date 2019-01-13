@@ -81,7 +81,7 @@ SysTick_Handler(void) {
         time_tick++;
         if (time_tick == 1000) {
                 if (btn_clicks % 2) {
-                       LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8); 
+                       LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
                 }
                 time_tick = 0;
         }
@@ -95,25 +95,24 @@ void delay_ms(int time_delay)
         int time_start = 1000 - time_tick > time_delay ? time_tick :
                                                          time_tick - 1000;
         while (time_tick - time_start < time_delay);
-
         return;
 }
 
 int main(void)
 {
-        rcc_init();
-        gpio_init();
         uint8_t btn_was_pressed = 0;
 
+        rcc_init();
+        gpio_init();
+
         while (1) {
-                if (btn_was_pressed && 
+                if (btn_was_pressed &&
                     !LL_GPIO_IsInputPinSet(GPIOA, LL_GPIO_PIN_0)) {
                         delay_ms(50);
-                        if(!LL_GPIO_IsInputPinSet(GPIOA, LL_GPIO_PIN_0))
+                        if (!LL_GPIO_IsInputPinSet(GPIOA, LL_GPIO_PIN_0))
                                 btn_clicks++;
                 }
                 btn_was_pressed = LL_GPIO_IsInputPinSet(GPIOA, LL_GPIO_PIN_0);
-
         }
         return 0;
 }
