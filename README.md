@@ -45,30 +45,11 @@ sudo yum install arm-none-eabi-binutils-cs
 sudo yum install arm-none-eabi-newlib
 ```
 
-##### MacOs
+##### MacOS
 
 ```
 brew tap ArmMbed/homebrew-formulae
 brew install arm-none-eabi-gcc
-```
-
-#### Debugger
-
-Bare metal GNU debugger for embedded ARM chips using Cortex-M0/M0+/M3/M4,
-Cortex-R4/R5/R7 and Cortex-A* processors. GDB is a source-level debugger,
-capable of breaking programs at any specific line, displaying variable values,
-and determining where errors occurred.
-
-##### Linux (Ubuntu)
-
-```
-sudo apt-get install gdb-arm-none-eabi
-```
-
-##### Linux (Fedora)
-
-```
-sudo yum install arm-none-eabi-gdb
 ```
 
 If it installs correctly, doing autocomplete in the terminal like so:
@@ -126,7 +107,21 @@ Every thing can be built from the top of directory.
 ```
 cd stlink
 make
-cd build/Release && make install
+cd build/Release
+make install
+```
+
+To install it run the following command with root permission.
+
+```
+sudo make install
+```
+
+For some reason, the supplementary library is often not installed correctly,
+thus Linux users should move the library manually.
+
+```
+sudo cp libusb.so.1 /usr/lib/
 ```
 
 Stlink installation requires cmake, so if you don't have one:
