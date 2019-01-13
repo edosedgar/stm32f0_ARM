@@ -68,20 +68,17 @@ static void tim3_config(void)
         LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM3);
         
         LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH3);
+        
         LL_TIM_SetCounterMode(TIM3, LL_TIM_COUNTERMODE_UP);
         LL_TIM_SetAutoReload(TIM3, 48000);
         LL_TIM_SetPrescaler(TIM3, 1);
-        
+
         LL_TIM_OC_SetMode(TIM3, LL_TIM_CHANNEL_CH3, LL_TIM_OCMODE_PWM1);
         LL_TIM_OC_EnableFast(TIM3, LL_TIM_CHANNEL_CH3);
         LL_TIM_OC_EnablePreload(TIM3, LL_TIM_CHANNEL_CH3);
-        LL_TIM_OC_SetCompareCH3(TIM3, 4800);
+        LL_TIM_OC_SetCompareCH3(TIM3, 48000 * 0.1);
 
         LL_TIM_GenerateEvent_UPDATE(TIM3);
-        LL_TIM_EnableIT_UPDATE(TIM3);
-
-        NVIC_SetPriority(TIM3_IRQn, 1);
-        NVIC_EnableIRQ(TIM3_IRQn);
 
         LL_TIM_EnableCounter(TIM3);
 
@@ -94,26 +91,25 @@ void HardFault_Handler(void)
         while (1);
 }
 
+const int period = 2000;
+const int slice = 2000/6;
+int current_pwm = 0;
 void SysTick_Handler(void)
 {
         static int tick = 0;
         tick++;
-        if (tick == 1000) {
-                //LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
+        if (tick == period) {
                 tick = 0;
         }
+        current_pwm = tick < slice ? tick :
+                      (tick >= slice) && (tick < 2 * slice) ? 2 * slice - tick :
+                      (tick >= 2 * slice) && (tick < 3 * slice) ? tick - 2 * slice :
+                      (tick >= 3 * slice) && (tick < 6 * slice) ? (6 * slice - tick)/3 :
+                      0;
+        LL_TIM_OC_SetCompareCH3(TIM3, 48000 * current_pwm / slice);
+
 }
 
-/*
- * Hardware interrupt handler
- */
-void TIM3_IRQHandler(void)
-{
-        if (LL_TIM_IsActiveFlag_UPDATE(TIM3)) {
-                LL_TIM_ClearFlag_UPDATE(TIM3);
-                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
-        }
-}
 
 int main(void)
 {
