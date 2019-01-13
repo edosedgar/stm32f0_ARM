@@ -96,7 +96,21 @@ ST boards. On the discovery boards, the programmer is embedded at the
 top. You just need to make sure you plug in your mini-USB cable into the
 center-most port that is labeled ST-Link.
 
-First, clone the repository st-link.
+Stlink installation requires cmake, so if you don't have one:
+
+#### Linux
+
+```
+sudo apt-get install cmake
+```
+
+#### MacOS
+
+```
+brew install cmake
+```
+
+Then clone the repository st-link.
 
 ```
 git clone https://github.com/texane/stlink.git
@@ -121,20 +135,6 @@ thus **Linux** users should move the library manually to the system directory.
 
 ```
 sudo cp libstlink.so.1 /usr/lib/
-```
-
-Stlink installation requires cmake, so if you don't have one:
-
-#### Linux
-
-```
-sudo apt-get install cmake
-```
-
-#### MacOS
-
-```
-brew install cmake
 ```
 
 In Fedora, st-link software can be installed from repository:
