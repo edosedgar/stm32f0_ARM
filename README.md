@@ -108,7 +108,6 @@ Every thing can be built from the top of directory.
 cd stlink
 make
 cd build/Release
-make install
 ```
 
 To install it run the following command with root permission.
@@ -117,11 +116,11 @@ To install it run the following command with root permission.
 sudo make install
 ```
 
-For some reason, the supplementary library is often not installed correctly,
-thus Linux users should move the library manually.
+For some reason, the supplementary library might not be installed automatically,
+thus **Linux** users should move the library manually to the system directory.
 
 ```
-sudo cp libusb.so.1 /usr/lib/
+sudo cp libstlink.so.1 /usr/lib/
 ```
 
 Stlink installation requires cmake, so if you don't have one:
@@ -132,7 +131,7 @@ Stlink installation requires cmake, so if you don't have one:
 sudo apt-get install cmake
 ```
 
-#### MacOs
+#### MacOS
 
 ```
 brew install cmake
