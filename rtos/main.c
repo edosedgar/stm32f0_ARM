@@ -71,7 +71,7 @@ void led_blink(void *p)
         (void) p;
 
         while (1) {
-                LL_GPIO_TogglePin(GPIOD, LL_GPIO_PIN_13);
+                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
                 vTaskDelay(1000);
         }
         return;
