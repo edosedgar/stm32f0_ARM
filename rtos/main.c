@@ -3,6 +3,10 @@
 #include "stm32f0xx_ll_rcc.h"
 #include "stm32f0xx_ll_system.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "os_routines.h"
+
 /**
   * System Clock Configuration
   * The system Clock is configured as follow :
@@ -62,20 +66,28 @@ void HardFault_Handler(void)
         while (1);
 }
 
-void SysTick_Handler(void)
+void led_blink(void *p)
 {
-        static int tick = 0;
-        tick++;
-        if (tick == 1000) {
-                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
-                tick = 0;
+        (void) p;
+
+        while (1) {
+                LL_GPIO_TogglePin(GPIOD, LL_GPIO_PIN_13);
+                vTaskDelay(1000);
         }
+        return;
 }
+
+StackType_t blinkTaskStack[1024];
+StaticTask_t blinkTaskBuffer;
 
 int main(void)
 {
         rcc_config();
         gpio_config();
+
+        xTaskCreateStatic(led_blink, "led1", 1024, NULL, 1, blinkTaskStack,
+                          &blinkTaskBuffer);
+        vTaskStartScheduler();
 
         while (1);
         return 0;
