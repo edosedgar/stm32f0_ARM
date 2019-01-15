@@ -66,7 +66,7 @@ void HardFault_Handler(void)
         while (1);
 }
 
-void led_blink(void *p)
+void led_blink_green(void *p)
 {
         (void) p;
 
@@ -77,16 +77,34 @@ void led_blink(void *p)
         return;
 }
 
-StackType_t blinkTaskStack[1024];
-StaticTask_t blinkTaskBuffer;
+void led_blink_blue(void *p)
+{
+        (void) p;
+
+        while (1) {
+                LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_9);
+                vTaskDelay(500);
+        }
+        return;
+}
+
+
+StackType_t blueTaskStack[128];
+StaticTask_t blueTaskBuffer;
+
+StackType_t greenTaskStack[128];
+StaticTask_t greenTaskBuffer;
 
 int main(void)
 {
         rcc_config();
         gpio_config();
 
-        xTaskCreateStatic(led_blink, "led1", 1024, NULL, 1, blinkTaskStack,
-                          &blinkTaskBuffer);
+        xTaskCreateStatic(led_blink_green, "led_green", 128, NULL, 1,
+                          greenTaskStack, &greenTaskBuffer);
+        xTaskCreateStatic(led_blink_blue, "led_blue", 128, NULL, 1,
+                          blueTaskStack, &blueTaskBuffer);
+
         vTaskStartScheduler();
 
         while (1);

@@ -2,7 +2,7 @@
 # Makefile for STM32F0 Discovery board projects
 
 OUTPATH = build
-PROJECT = $(OUTPATH)/blank
+PROJECT = $(OUTPATH)/rtos
 OPENOCD_SCRIPT_DIR ?= /usr/share/openocd/scripts
 HEAP_SIZE = 0x400
 
