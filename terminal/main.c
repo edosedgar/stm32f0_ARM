@@ -48,6 +48,16 @@ static void rcc_config(void)
         SystemCoreClock = 48000000;
 }
 
+void SysTick_Handler(void)
+{
+        static int tick = 0;
+        tick++;
+        if (tick == 1000) {
+                //LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
+                tick = 0;
+        }
+}
+
 /*
  * First function to be called from fsm
  */

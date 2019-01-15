@@ -53,6 +53,6 @@ void fsm_adc_handler(void* args)
         uint8_t val = LL_ADC_REG_ReadConversionData8(ADC1);
         ((uint8_t *)args)[0] = 1;
         memcpy(((uint8_t *)args) + 1, &val, 1);
-        fsm_set_state(FSM_TERM_MAIN);
+        fsm_set_state(FSM_TERM_RESPOND);
         return;
 }

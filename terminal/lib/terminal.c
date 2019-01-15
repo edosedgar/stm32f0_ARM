@@ -16,6 +16,22 @@
 static term_ctrl_t term_ctrl;
 
 /*
+ * Private function for sending response
+ */
+static void comm_send_msg(uint8_t *buff, int len)
+{
+        int i = 0;
+
+        LL_USART_ClearFlag_TC(USART1);
+        while (len--) {
+                while (!LL_USART_IsActiveFlag_TXE(USART1));
+                LL_USART_TransmitData8(USART1, buff[i++]);
+        }
+        while (!LL_USART_IsActiveFlag_TC(USART1));
+        return;
+}
+
+/*
  * Init all periphs related to terminal communication, like
  * UART and all static structures related
  */
@@ -92,18 +108,6 @@ void fsm_term_init(void *args)
  * Example: if some command is requested then fsm_set_state to its
  * corresponding handler
  */
-void comm_send_msg(uint8_t *buff, int len)
-{
-        int i = 0;
-
-        LL_USART_ClearFlag_TC(USART1);
-        while (len--) {
-                while (!LL_USART_IsActiveFlag_TXE(USART1));
-                LL_USART_TransmitData8(USART1, buff[i++]);
-        }
-        while (!LL_USART_IsActiveFlag_TC(USART1));
-        return;
-}
 
 void fsm_term_main(void *args)
 {
@@ -122,6 +126,16 @@ void fsm_term_main(void *args)
                         fsm_set_state(command_code + FSM_TERM_CMD_START);
                     }
         }
+        return;
+}
+
+void fsm_term_respond(void *args)
+{
+        uint8_t len = term_ctrl.params[0];
+        uint8_t *buff = &term_ctrl.params[1];
+        
+        comm_send_msg(buff, len);
+        fsm_set_state(FSM_TERM_MAIN);
         return;
 }
 

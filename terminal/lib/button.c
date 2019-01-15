@@ -30,6 +30,6 @@ void fsm_btn_handler(void *args)
                 memcpy(((uint8_t *)args) + 1, "LOW", 3);
         }
 
-        fsm_set_state(FSM_TERM_MAIN);
+        fsm_set_state(FSM_TERM_RESPOND);
         return;
 }
