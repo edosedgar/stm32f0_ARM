@@ -131,8 +131,9 @@ void fsm_term_main(void *args)
 
 void fsm_term_respond(void *args)
 {
-        uint8_t len = term_ctrl.params[0];
-        uint8_t *buff = &term_ctrl.params[1];
+        uint8_t *params = (uint8_t *) args;
+        uint8_t len = params[0];
+        uint8_t *buff = &params[1];
         
         comm_send_msg(buff, len);
         fsm_set_state(FSM_TERM_MAIN);

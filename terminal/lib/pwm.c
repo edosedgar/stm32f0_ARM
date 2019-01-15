@@ -56,6 +56,7 @@ void fsm_pwm_handler(void *args)
                 ((uint8_t *)args)[0] = 5;
                 memcpy((uint8_t *)args + 1, "ERROR", 5);
         }
+        fsm_set_data(FSM_TERM_RESPOND, args);
         fsm_set_state(FSM_TERM_RESPOND);
         return;
 }
