@@ -58,3 +58,4 @@ dkms.conf
 tags
 
 *.swp
+.DS_Store
