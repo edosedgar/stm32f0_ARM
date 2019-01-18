@@ -16,25 +16,20 @@ SOURCES_PERIPH = $(wildcard plib/*.c)
 SOURCES_LIB = $(wildcard lib/*.c)
 
 SOURCES_C = $(wildcard *.c)
-SOURCES_C += $(SOURCES_LIB)
 SOURCES_C += $(SOURCES_CORE)
 SOURCES_C += $(SOURCES_PERIPH)
+SOURCES_C += $(SOURCES_LIB)
 
 SOURCES = $(SOURCES_S) $(SOURCES_C)
 OBJS = $(SOURCES_S:.s=.o) $(SOURCES_C:.c=.o)
 
 # Includes and Defines
 
-INCLUDES += -I src
-INCLUDES += -I includes
-INCLUDES += -I stm32f0_peripheral/Inc
-INCLUDES += -I stm32f0_peripheral/Src
-
 INC_CORE = -Icore
-INC_PERIPH = -Iplib
 INC_LIB = -Ilib
-INCLUDES = $(INC_LIB)
+INC_PERIPH = -Iplib
 INCLUDES += $(INC_CORE)
+INCLUDES += $(INC_LIB)
 INCLUDES += $(INC_PERIPH)
 
 DEFINES = -DSTM32 -DSTM32F0 -DSTM32F051x8 -DHEAP_SIZE=$(HEAP_SIZE)
@@ -70,7 +65,7 @@ CFLAGS_EXTRA = -nostartfiles -nodefaultlibs -nostdlib \
 CFLAGS += $(DEFINES) $(MCUFLAGS) $(DEBUG_OPTIMIZE_FLAGS) $(CFLAGS_EXTRA) $(INCLUDES)
 
 LDFLAGS = -static $(MCUFLAGS) -Wl,--start-group -lgcc -lc -lg -Wl,--end-group\
-	  -Wl,--gc-sections -T STM32F051R8Tx_FLASH.ld
+	  -Wl,--gc-sections -T core/stm32f051r8tx_mmap.ld
 
 .PHONY: dirs all clean flash erase
 
