@@ -12,3 +12,6 @@ core and STM32F0 peripherals.
 
 To get to the content of lectures and supplementary materials for the course,
 refer to [Wiki page](https://github.com/edosedgar/stm32f0_ARM/wiki).
+
+If you need just a template project, refer to
+[Blank project](https://github.com/edosedgar/stm32f0_ARM/tree/master/labs/01_blank).
