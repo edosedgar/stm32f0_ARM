@@ -1242,15 +1242,15 @@ __STATIC_INLINE uint32_t LL_RCC_GetAPB1Prescaler(void)
   *         (*) value not defined in all devices
   * @retval None
   */
-__STATIC_INLINE void LL_RCC_ConfigMCO(uint32_t MCOxSource, uint32_t MCOxPrescaler)
-{
 #if defined(RCC_CFGR_MCOPRE)
+__STATIC_INLINE void LL_RCC_ConfigMCO(uint32_t MCOxSource, uint32_t MCOxPrescaler) {
 #if defined(RCC_CFGR_PLLNODIV)
   MODIFY_REG(RCC->CFGR, RCC_CFGR_MCOSEL | RCC_CFGR_MCOPRE | RCC_CFGR_PLLNODIV, MCOxSource | MCOxPrescaler);
 #else
   MODIFY_REG(RCC->CFGR, RCC_CFGR_MCOSEL | RCC_CFGR_MCOPRE, MCOxSource | MCOxPrescaler);
 #endif /* RCC_CFGR_PLLNODIV */
 #else
+__STATIC_INLINE void LL_RCC_ConfigMCO(uint32_t MCOxSource) {
   MODIFY_REG(RCC->CFGR, RCC_CFGR_MCOSEL, MCOxSource);
 #endif /* RCC_CFGR_MCOPRE */
 }
