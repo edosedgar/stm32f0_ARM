@@ -91,7 +91,8 @@ static void gpio_config(void)
  * (basically it is a simple cycle with a predefined number
  * of loops)
  */
-__attribute__((naked)) static void delay_10ms(void) {
+__attribute__((naked)) static void delay_10ms(void)
+{
     asm ("push {r7, lr}");
     asm ("ldr r6, [pc, #8]");
     asm ("sub r6, #1");
