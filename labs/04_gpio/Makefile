@@ -54,18 +54,18 @@ OPENOCD=openocd
 # Compiler options
 
 MCUFLAGS = -mcpu=cortex-m0 -mlittle-endian -mfloat-abi=soft -mthumb \
-	   -mno-unaligned-access
+           -mno-unaligned-access
 
 DEBUG_OPTIMIZE_FLAGS = -O0 -ggdb -gdwarf-2
 
 CFLAGS = -Wall -Wextra --pedantic
 CFLAGS_EXTRA = -nostartfiles -nodefaultlibs -nostdlib \
-	       -fdata-sections -ffunction-sections
+               -fdata-sections -ffunction-sections
 
 CFLAGS += $(DEFINES) $(MCUFLAGS) $(DEBUG_OPTIMIZE_FLAGS) $(CFLAGS_EXTRA) $(INCLUDES)
 
-LDFLAGS = -static $(MCUFLAGS) -Wl,--start-group -lgcc -lc -lg -Wl,--end-group\
-	  -Wl,--gc-sections -T core/stm32f051r8tx_mmap.ld
+LDFLAGS = -static $(MCUFLAGS) -Wl,--start-group -lgcc -lc -lg -Wl,--end-group \
+          -Wl,--gc-sections -T core/stm32f051r8tx_mmap.ld
 
 .PHONY: dirs all clean flash erase
 
@@ -90,20 +90,20 @@ erase:
 
 gdb-server-ocd:
 	$(OPENOCD) -f $(OPENOCD_SCRIPT_DIR)/interface/stlink-v2.cfg \
-		   -f $(OPENOCD_SCRIPT_DIR)/target/stm32f0x.cfg
+               -f $(OPENOCD_SCRIPT_DIR)/target/stm32f0x.cfg
 
 gdb-server-st:
 	st-util
 
 OPENOCD_P=3333
 gdb-openocd: $(PROJECT).elf
-	$(GDB) --eval-command="target extended-remote localhost:$(OPENOCD_P)"\
-	       --eval-command="monitor halt" $(PROJECT).elf
+	$(GDB) --eval-command="target extended-remote localhost:$(OPENOCD_P)" \
+           --eval-command="load" $(PROJECT).elf
 
 GDB_P=4242
 gdb-st-util: $(PROJECT).elf
 	$(GDB) --eval-command="target extended-remote localhost:$(GDB_P)"\
-	       --eval-command="monitor halt" $(PROJECT).elf
+           --eval-command="load" $(PROJECT).elf
 
 $(PROJECT).elf: $(OBJS)
 

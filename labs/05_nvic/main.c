@@ -1,4 +1,7 @@
 /*
+ * This example demonstrates usage of system interrupts
+ * After powering on Blue LED is on
+ * in a second green LEd is on as well
  */
 
 #include <stdlib.h>
@@ -76,12 +79,20 @@ __attribute__((naked)) static void delay(void)
     asm (".word 0x5b8d80"); //6000000
 }
 
+/*
+ * This handler will be called in a handler
+ * mode (MSP stack)
+ */
 void unpriviliged_callback(void *data)
 {
     (void) data;
     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
 }
 
+/*
+ * This function stores input parameters in r0 and r1 regs
+ * and request SVC interrupt
+ */
 void service_call(void (*func)(void *), void *args)
 {
     //by convention func is in r0 and args is in r1
@@ -100,7 +111,7 @@ int main(void)
     rcc_config();
     gpio_config();
     /*
-     * Generate software interrupt
+     * Generate SVC interrupt
      */
     service_call(unpriviliged_callback, NULL);
     delay();
