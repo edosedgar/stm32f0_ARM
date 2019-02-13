@@ -1,7 +1,7 @@
 /*
  * This example demonstrates usage of system interrupts
  * After powering on Blue LED is on
- * in a second green LEd is on as well
+ * in a second a green LED is on as well
  */
 
 #include <stdlib.h>
@@ -93,17 +93,19 @@ void unpriviliged_callback(void *data)
  * This function stores input parameters in r0 and r1 regs
  * and request SVC interrupt
  */
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 void service_call(void (*func)(void *), void *args)
 {
     //by convention func is in r0 and args is in r1
     asm volatile("svc 0");
 }
+#pragma GCC diagnostic pop
 
 int main(void)
 {
     /*
      * Turn on thread mode
-     * (We just took some far place in RAM)
+     * (We just took some very far place in RAM)
      */
     __set_CONTROL(0x02);
     __set_PSP(0x20001000);
