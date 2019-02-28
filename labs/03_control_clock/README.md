@@ -35,39 +35,38 @@ static void rcc_config()
 Так как мы собираемся выставить частоту тактирования 48 МГц, то необходимо увеличить задержку обращения к FLASH памяти:
 
 ```c
-    LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
+LL_FLASH_SetLatency(LL_FLASH_LATENCY_1);
 ```
 
 Как мы знаем, на отладочной плане нет внешнего источника тактирования для контроллера, поэтому еще раз переключимся на источник внутреннего тактирования и дождемся стабилизации частоты:
 
 ```c
-    LL_RCC_HSI_Enable();
-    while (LL_RCC_HSI_IsReady() != 1);
+LL_RCC_HSI_Enable();
+while (LL_RCC_HSI_IsReady() != 1);
 ```
 
 Так как частота внутреннего генератора всего 8МГц, настроим PLL, чтобы получить 48МГц. Например, можно поделить входную частоту на 2 и домножить на 12. Как обычно, после настройки включим сам модуль и дождемся его готовности:
 
 ```c
-    LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI_DIV_2,
-                                LL_RCC_PLL_MUL_12);
-
-    LL_RCC_PLL_Enable();
-    while (LL_RCC_PLL_IsReady() != 1);
+LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI_DIV_2,
+                            LL_RCC_PLL_MUL_12);
+LL_RCC_PLL_Enable();
+while (LL_RCC_PLL_IsReady() != 1);
 ```
 
 Теперь настроим делитель для шины AHB и выставим PLL как источник для системной частоты:
 
 ```c
-    LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
-    LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
-    while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL);
+LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
+while (LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL);
 ```
 
 Напоследок, установим частоту для шины APB:
 
 ```c
-    LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
+LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
 ```
 
-Теперь добавим вызов данной функции в main. После загрузки данного кода микроконтроллер будет работать на частоте 48МГц!
+Функция для настройки модулья тактирования готова, добавим ее вызов в main. После загрузки данного кода микроконтроллер будет работать на частоте 48МГц!
 
