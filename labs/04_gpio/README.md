@@ -70,9 +70,8 @@ if (PINA_0 == 1) {
 Поработав с базовыми элементами, перейдем к подключению семисегментного индикатора (seven-segment display). Индикатор имеет примерно следующий вид:
 
 <p align="center">
-  <img width=300 src="https://github.com/edosedgar/stm32f0_ARM/wiki/seven_segment.jpg" alt="seven_segment.jpg"/>
-  Семисегментный индикатор
-</p>
+  <img width="400" src="https://github.com/edosedgar/stm32f0_ARM/wiki/seven_segment.jpg" alt="seven_segment.jpg"/>
+  <p align="center"> Семисегментный индикатор <p align="center">
 
 Устройство имеет 10 выводов, центральный вывод в каждом ряду это общий анод/катод в зависимости от типа индикатора. 
 
