@@ -234,5 +234,5 @@ dyn_display(hex2dec(number));
 Таким образом, если во время нажатия кнопки произойдет дребезг, то только последний стабильный переход в состояние `0` даст досчитать счетчику и выполнить обработчик нажатий. Предшествующий стабильный переход `1` будет постоянно сбрасывать счетчик, ровно как и частые переходы с периодом меньше 50 мс. Грубо говоря, это обычный фильтр низких частот, не пропускающий сигнал с частотой выше 20 Гц.
 
 <p align="center">
-  <img width="600" src="https://github.com/edosedgar/stm32f0_ARM/wiki/debouncer.jpg" alt="debouncer.jpg"/>
+  <img width="800" src="https://github.com/edosedgar/stm32f0_ARM/wiki/debouncer.jpg" alt="debouncer.jpg"/>
   <p align="center"> Антидребезг на диаграмме <p align="center">
