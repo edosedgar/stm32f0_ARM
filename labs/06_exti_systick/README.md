@@ -163,11 +163,11 @@ void EXTI0_1_IRQHandler(void)
 
 При вращении против часовой (CCW):
 
-<center>
+<div align="center">
 |  A_old  |  B_old  |  A_new  |  B_new  |  Out  |
 |:-------:|:-------:|:-------:|:-------:|:-------:|
 |  0  |  0  |  0  |  1  |  CCW   |
 |  0  |  1  |  1  |  1  |  CCW   |
 |  1  |  1  |  1  |  0  |  CCW   |
 |  1  |  0  |  0  |  0  |  CCW   |
-</center>
+</div>
