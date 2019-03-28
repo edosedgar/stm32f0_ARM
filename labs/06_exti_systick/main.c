@@ -95,6 +95,8 @@ static void exti_config(void)
     NVIC_SetPriority(EXTI0_1_IRQn, 0);
 }
 
+
+static int counter_top = 1000;
 /*
  * Handler for encoder
  */
@@ -128,8 +130,8 @@ void EXTI0_1_IRQHandler(void)
      * hence it is forward direction
      */
     if (enc_dir == 4) {
-        if (SysTick->LOAD < 60000)
-            SysTick->LOAD += SysTick->LOAD / 10;
+        if (counter_top < 3000)
+            counter_top += counter_top / 10;
         LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
         enc_dir = 0;
     }
@@ -139,8 +141,8 @@ void EXTI0_1_IRQHandler(void)
      * hence it is backward direction
      */
     if (enc_dir == -4) {
-        if (SysTick->LOAD > 100)
-            SysTick->LOAD -= SysTick->LOAD / 10;
+        if (counter_top > 10)
+            counter_top -= counter_top / 10;
         LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_9);
         enc_dir = 0;
     }
@@ -159,20 +161,19 @@ static void systick_config(void)
 {
     LL_InitTick(48000000, 1000);
     LL_SYSTICK_EnableIT();
-    NVIC_EnableIRQ(SysTick_IRQn);
     NVIC_SetPriority(SysTick_IRQn, 0);
     return;
 }
 
 /*
  * Handler for system timer
- * Count up to 1000 then switch led
+ * Count up to counter_top then switch led
  * (to make blinking more visible)
  */
 void SysTick_Handler(void)
 {
     static int counter = 0;
-    counter = (counter + 1) % 1000;
+    counter = (counter + 1) % counter_top;
     if (!counter)
         LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
 }
