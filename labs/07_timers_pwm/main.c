@@ -76,12 +76,14 @@ static void timers_config(void)
      * Setup timer to output compare mode
      */
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
-    LL_TIM_SetPrescaler(TIM2, 47999);
+    LL_TIM_SetPrescaler(TIM2, 479);
     LL_TIM_SetAutoReload(TIM2, 999);
-    LL_TIM_OC_SetCompareCH1(TIM2, 1);
+    LL_TIM_OC_SetCompareCH1(TIM2, 15);
     LL_TIM_CC_EnableChannel(TIM2, LL_TIM_CHANNEL_CH1);
     LL_TIM_OC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_OCPOLARITY_HIGH);
+    //LL_TIM_OC_SetMode(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_OCMODE_TOGGLE);
     LL_TIM_OC_SetMode(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_OCMODE_PWM1);
+    LL_TIM_SetCounterMode(TIM2, LL_TIM_COUNTERMODE_UP);
     LL_TIM_EnableIT_CC1(TIM2);
     LL_TIM_EnableCounter(TIM2);
     /*
