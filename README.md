@@ -15,3 +15,18 @@ refer to [Wiki page](https://github.com/edosedgar/stm32f0_ARM/wiki).
 
 If you need just a template project, refer to
 [Blank project](https://github.com/edosedgar/stm32f0_ARM/tree/master/labs/01_blank).
+
+# Syllabus
+
+In progress
+
+# Contributors & course staff
+
+All supplementary materials and teaching are delivered by
+
+* Edgar Kaziakhmedov - all main track lectures, labs, articles
+* Ilya Levitskiy - mentor, labs, articles
+* Vladislav Molodtsov - mentor, labs, administration stuff
+* Viktor Prutyanov - mentor
+* Dmitry Zyuzin - mentor
+* Phillip Mikoyan - administration stuff
