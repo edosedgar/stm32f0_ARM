@@ -26,7 +26,7 @@ All supplementary materials and teaching are delivered by
 
 * Edgar Kaziakhmedov - all main track lectures, labs, articles
 * Ilya Levitskiy - mentor, labs, articles
-* Vladislav Molodtsov - mentor, labs, administration stuff
+* Vladislav Molodtsov - mentor, articles, administration stuff
 * Viktor Prutyanov - mentor
 * Dmitry Zyuzin - mentor
 * Phillip Mikoyan - administration stuff
