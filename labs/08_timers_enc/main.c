@@ -98,8 +98,8 @@ static void delay(void)
 }
 
 /*
- * Turn on Green led when software reset was generated
- * Turn on Blue led when Reset pin was pressed
+ * Turn on Green led when turn encoder to the right
+ * Turn on Blue led when turn encoder to the left
  */
 int main(void)
 {
