@@ -24,9 +24,9 @@ In progress
 
 All supplementary materials and teaching are delivered by
 
-* Edgar Kaziakhmedov - all main track lectures, labs, articles
-* Ilya Levitskiy - mentor, labs, articles
-* Vladislav Molodtsov - mentor, articles, administration stuff
-* Viktor Prutyanov - mentor
-* Dmitry Zyuzin - mentor
-* Phillip Mikoyan - administration stuff
+* [Edgar Kaziakhmedov](https://vk.com/softed) - all main track lectures, labs, articles
+* [Vladislav Molodtsov](https://vk.com/molvlad) - mentor, articles, administration stuff
+* [Ilya Levitskiy](https://vk.com/id267671262) - mentor, labs, articles
+* [Viktor Prutyanov](https://vk.com/vprutyanov) - mentor
+* [Dmitry Zyuzin](https://vk.com/id33814927) - mentor
+* [Phillip Mikoyan](https://vk.com/philalala) - administration stuff
