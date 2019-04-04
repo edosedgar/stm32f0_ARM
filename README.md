@@ -1,6 +1,8 @@
 Introduction to embedded programming on STM32
 =============================================
 
+## General info
+
 STM32 is a modern family of MCUs produced by STMicroelectronics that is widely
 used in research, consumer and industrial electronics. STM32 microcontrollers
 are quite powerful and cheap, but impose initial barriers to get started
@@ -16,11 +18,11 @@ refer to [Wiki page](https://github.com/edosedgar/stm32f0_ARM/wiki).
 If you need just a template project, refer to
 [Blank project](https://github.com/edosedgar/stm32f0_ARM/tree/master/labs/01_blank).
 
-# Syllabus
+## Syllabus
 
 In progress
 
-# Contributors & course staff
+## Contributors & course staff
 
 All supplementary materials and teaching are delivered by
 
