@@ -10,4 +10,4 @@
 
 ### Исполнительное устройство
 
-Задания из данного раздела предоставлены [здесь](https://github.com/edosedgar/stm32f0_ARM/blob/master/labs/09_usart_terminal/09_usart_terminal.ipynb). Ноутбук необходимо скачать.
+Задания из данного раздела предоставлены [здесь](https://github.com/edosedgar/stm32f0_ARM/blob/master/labs/09_usart_terminal/notebook/09_usart_terminal.ipynb). Ноутбук необходимо скачать.
