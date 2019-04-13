@@ -8,6 +8,16 @@
 #include "stm32f0xx_ll_gpio.h"
 #include "stm32f0xx_ll_usart.h"
 
+/*
+ * Structure for communication
+ */
+typedef struct {
+    uint8_t cmd;
+    uint8_t params[10];
+    uint8_t active;
+} uart_req_t;
+static uart_req_t uart_req;
+
 /**
   * System Clock Configuration
   * The system Clock is configured as follow :
@@ -54,6 +64,7 @@ static void rcc_config()
  */
 static void gpio_config(void)
 {
+    LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
     LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_8, LL_GPIO_MODE_OUTPUT);
     LL_GPIO_SetPinMode(GPIOC, LL_GPIO_PIN_9, LL_GPIO_MODE_OUTPUT);
@@ -110,9 +121,62 @@ static void usart_config(void)
 
 void USART1_IRQHandler(void)
 {
+    static uint8_t pos = 0;
+
+    if (LL_USART_IsActiveFlag_RXNE(USART1)) {
+        if (pos == 0) {
+            uart_req.cmd = LL_USART_ReceiveData8(USART1);
+        } else {
+            uart_req.params[pos - 1] = LL_USART_ReceiveData8(USART1);
+        }
+        pos++;
+    }
+    if (LL_USART_IsActiveFlag_IDLE(USART1)) {
+        pos = 0;
+        uart_req.active = 1;
+        LL_USART_ClearFlag_IDLE(USART1);
+    }
     return;
 }
 
+static void manage_requests(void) {
+    uint8_t is_ok = 0;
+
+    if (!uart_req.active)
+        return;
+
+    switch (uart_req.cmd) {
+    case '8': {
+        if (uart_req.params[1] == '1')
+            LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_8);
+        else
+            LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_8);
+        is_ok = 1;
+        break;
+    }
+    case '9': {
+        if (uart_req.params[1] == '1')
+            LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_9);
+        else
+            LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_9);
+        is_ok = 1;
+        break;
+    }
+    case '0': {
+        is_ok = LL_GPIO_IsInputPinSet(GPIOA, LL_GPIO_PIN_0);
+        break;
+    }
+    default:
+        is_ok = 0;
+        break;
+    }
+
+    while (!LL_USART_IsActiveFlag_TXE(USART1));
+    LL_USART_TransmitData8(USART1, is_ok + 0x30);
+
+    uart_req.active = 0;
+    return;
+}
 /*
  * Terminal
  * Receive commands and do corresponding action
@@ -123,6 +187,8 @@ int main(void)
     gpio_config();
     usart_config();
 
-    while (1);
+    while (1) {
+        manage_requests();
+    }
     return 0;
 }
