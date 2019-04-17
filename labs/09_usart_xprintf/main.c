@@ -103,6 +103,12 @@ static void usart_config(void)
     return;
 }
 
+static char usart_getc(void)
+{
+    while (!(LL_USART_IsActiveFlag_RXNE(USART1)));
+    return LL_USART_ReceiveData8(USART1);
+}
+
 static void usart_putc(char symbol)
 {
     while (!LL_USART_IsActiveFlag_TXE(USART1));
@@ -116,6 +122,7 @@ static void usart_putc(char symbol)
 static void printf_config(void)
 {
     xdev_out(usart_putc);
+    xdev_in(usart_getc);
     return;
 }
 
