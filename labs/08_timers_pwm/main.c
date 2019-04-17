@@ -66,7 +66,7 @@ static void gpio_config(void)
 static void timers_config(void)
 {
     /*
-     * Configure input channel
+     * Configure output channel
      */
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
     LL_GPIO_SetPinMode(GPIOA, LL_GPIO_PIN_5, LL_GPIO_MODE_ALTERNATE);
