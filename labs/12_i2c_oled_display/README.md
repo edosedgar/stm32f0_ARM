@@ -3,7 +3,7 @@
 ### Подключение дисплея 
 
 <p align="center">
-  <img src="https://github.com/edosedgar/stm32f0_ARM/wiki/oled.jpg" alt="oled.jpg"/>
+  <img width="600"  src="https://github.com/edosedgar/stm32f0_ARM/wiki/oled.jpg" alt="oled.jpg"/>
   Рис. 1. Схема подключения
 </p>
 
