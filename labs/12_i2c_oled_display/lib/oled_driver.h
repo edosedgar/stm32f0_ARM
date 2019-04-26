@@ -3,7 +3,7 @@
 
 #define GMEM_WIDTH 128
 #define GMEM_HEIGHT 64
-#define GMEM_SIZE (GMEM_WIDTH * GMEM_WIDTH / 8)
+#define GMEM_SIZE (GMEM_WIDTH * GMEM_HEIGHT / 8)
 
 /*
  * Simple strucutre to define fonts

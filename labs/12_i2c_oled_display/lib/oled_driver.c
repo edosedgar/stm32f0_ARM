@@ -44,6 +44,10 @@ static void oled_hw_config(void)
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_I2C1);
     LL_I2C_DisableAnalogFilter(I2C1);
     LL_I2C_SetDigitalFilter(I2C1, 1);
+    /*
+     * Set I2C speed to 400 kHz, for further details refer
+     * to lecture
+     */
     LL_I2C_SetTiming(I2C1, 0x50330309);
     LL_I2C_DisableClockStretching(I2C1);
     LL_I2C_SetMasterAddressingMode(I2C1, LL_I2C_ADDRESSING_MODE_7BIT);
@@ -220,6 +224,12 @@ void oled_putc(char ch)
     uint8_t i, j;
     uint8_t color;
 
+    /*
+     * NOTE: historically \r and \n are used together
+     * in many instances as \r is used to move the carriage back
+     * to the left side of terminal, \n moves the carriage down
+     * Thereby, we must implement both of them
+     */
     if (ch == '\n') {
         curY++;
         return;
