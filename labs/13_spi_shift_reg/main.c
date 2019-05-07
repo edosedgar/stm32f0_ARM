@@ -138,7 +138,7 @@ void SysTick_Handler(void)
     counter = (counter + 1) % 1000;
     if (!counter) {
         hc595_set(led_status);
-        led_status = (led_status == 0x7F) ? 0x01 : led_status << 1;
+        led_status = (led_status == 0x80) ? 0x01 : led_status << 1;
     }
 }
 
