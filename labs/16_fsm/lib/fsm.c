@@ -24,7 +24,8 @@ fsm_cell_t fsm_table[] = {
     {LED_TURN_ON, OK_FSM, BUTTON_POLL}
 };
 
-void fsm_loop(enum FSM_STATES init_state) {
+void fsm_loop(enum FSM_STATES init_state)
+{
     int state = init_state;
     enum RET_CODES ret_code;
     int iter;
@@ -53,7 +54,8 @@ void fsm_loop(enum FSM_STATES init_state) {
  * ========================================================
  */
 
-enum RET_CODES do_startup(void) {
+enum RET_CODES do_startup(void)
+{
     /*
      * Init two default LEDs
      */
@@ -68,7 +70,8 @@ enum RET_CODES do_startup(void) {
     return OK_FSM;
 }
 
-enum RET_CODES do_button_poll(void) {
+enum RET_CODES do_button_poll(void)
+{
     /*
      * poll button, if it is pressed then return OK,
      * otherwise REPEAT
@@ -80,7 +83,8 @@ enum RET_CODES do_button_poll(void) {
     }
 }
 
-enum RET_CODES do_led_turn(void) {
+enum RET_CODES do_led_turn(void)
+{
     LL_GPIO_TogglePin(GPIOC, LL_GPIO_PIN_8);
     /*
      * turn on the LED, then come back to polling
