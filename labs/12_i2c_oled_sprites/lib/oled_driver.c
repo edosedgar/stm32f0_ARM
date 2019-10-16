@@ -353,101 +353,101 @@ void oled_pic_dithering(const uint8_t *im)
 
 void draw_sprite(Sprite sprite, uint32_t costume, int16_t x, int16_t y, uint32_t options_mask)
 {
-	int32_t i, j;
-	uint8_t *black_costume_data, *white_costume_data;
-	uint32_t width, height;
-	int16_t sprite_pos, gmem_pos;
-	uint8_t byte_shift;
-	
-	/* Check costume */
-	if (costume >= sprite.n_costumes) return;
-	black_costume_data = sprite.black_costumes_bank[costume];
-	white_costume_data = sprite.white_costumes_bank[costume];
-	
-	/* Rewrite parameters */
-	height = sprite.height;
-	width = sprite.width;
-	
-	/* Return if out of frame */
-	if (y <= -(int16_t)(height)*8 || y >= GMEM_HEIGHT || x <= -(int16_t)(width)) return;
-	
-	/* Return if both WHITE_NO and BLACK_NO active */
-	if((options_mask & DRAW_BLACK_NO) && (options_mask & DRAW_WHITE_NO)) return;
-	
-	/* Identify drawing boundaries */
-	int32_t i_start = (y < 0)? -(int32_t)(y/8) : 0;
-	int32_t i_stop = (y + height*8 - 8 < GMEM_HEIGHT)? (int32_t)height : (int32_t)(height-(y + height*8 - GMEM_HEIGHT)/8);
-	int32_t j_start = (x < 0)? -(int32_t)(x) : 0;
-	int32_t j_stop = (x + width < GMEM_WIDTH)? (int32_t)width : (int32_t)(-x + GMEM_WIDTH);
-	
-	/* Change negative y, so y/8 gives -(|y|/8) */
-	if (y < 0) {
-		byte_shift = 8 + (y % 8);
-		byte_shift = (byte_shift == 8)? 0 : byte_shift;
-		y -= 7;
-	} else {
-		byte_shift = y % 8;
-	}
-	
-	for(i = i_start; i < i_stop; i++) {
-		sprite_pos = (options_mask & DRAW_FLIP_SPRITE)? (i*width - j_start + width - 1) : (i*width + j_start);
-		gmem_pos = ((y/8) + i) * GMEM_WIDTH + x + j_start; 
-		if(gmem_pos >= GMEM_SIZE) continue;
-		for(j = j_start; j < j_stop; j++) {
-			
-			/* Draw black byte */			
-			if (!(options_mask & DRAW_BLACK_NO)) {
-				if(options_mask & DRAW_BLACK_INVERT) {
-					if(gmem_pos >= 0)
-						gmem[gmem_pos] ^= (black_costume_data[sprite_pos] << byte_shift);
-					if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-						gmem[gmem_pos+GMEM_WIDTH] ^= (black_costume_data[sprite_pos] >> (8-byte_shift));
-				} else {
-					if(options_mask & DRAW_BLACK_WHITE) {
-						if(gmem_pos >= 0)
-							gmem[gmem_pos] |= (black_costume_data[sprite_pos] << byte_shift);
-						if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-							gmem[gmem_pos+GMEM_WIDTH] |= (black_costume_data[sprite_pos] >> (8-byte_shift));
-					} else {
-						if(gmem_pos >= 0)
-							gmem[gmem_pos] &= ~(black_costume_data[sprite_pos] << byte_shift);
-						if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-							gmem[gmem_pos+GMEM_WIDTH] &= ~(black_costume_data[sprite_pos] >> (8-byte_shift));
-					}
-				}
-			}
-			
-			/* Draw white byte */
-			if (!(options_mask & DRAW_WHITE_NO)) {
-				if(options_mask & DRAW_WHITE_INVERT) {
-					if(gmem_pos >= 0)
-						gmem[gmem_pos] ^= (white_costume_data[sprite_pos] << byte_shift);
-					if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-						gmem[gmem_pos+GMEM_WIDTH] ^= (white_costume_data[sprite_pos] >> (8-byte_shift));
-				} else {
-					if(options_mask & DRAW_WHITE_BLACK) {
-						if(gmem_pos >= 0)
-							gmem[gmem_pos] &= ~(white_costume_data[sprite_pos] << byte_shift);
-						if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-							gmem[gmem_pos+GMEM_WIDTH] &= ~(white_costume_data[sprite_pos] >> (8-byte_shift));
-					} else {
-						if(gmem_pos >= 0)
-							gmem[gmem_pos] |= (white_costume_data[sprite_pos] << byte_shift);
-						if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-							gmem[gmem_pos+GMEM_WIDTH] |= (white_costume_data[sprite_pos] >> (8-byte_shift));
-					}
-				}
-			}
-			
-			gmem_pos++;
-			if(options_mask & DRAW_FLIP_SPRITE) 
-				sprite_pos--;
-			else 
-				sprite_pos++;
-				
-		} /* j */
-	} /* i */
-	
+    int32_t i, j;
+    uint8_t *black_costume_data, *white_costume_data;
+    uint32_t width, height;
+    int16_t sprite_pos, gmem_pos;
+    uint8_t byte_shift;
+    
+    /* Check costume */
+    if (costume >= sprite.n_costumes) return;
+    black_costume_data = sprite.black_costumes_bank[costume];
+    white_costume_data = sprite.white_costumes_bank[costume];
+    
+    /* Rewrite parameters */
+    height = sprite.height;
+    width = sprite.width;
+    
+    /* Return if out of frame */
+    if (y <= -(int16_t)(height)*8 || y >= GMEM_HEIGHT || x <= -(int16_t)(width)) return;
+    
+    /* Return if both WHITE_NO and BLACK_NO active */
+    if((options_mask & DRAW_BLACK_NO) && (options_mask & DRAW_WHITE_NO)) return;
+    
+    /* Identify drawing boundaries */
+    int32_t i_start = (y < 0)? -(int32_t)(y/8) : 0;
+    int32_t i_stop = (y + height*8 - 8 < GMEM_HEIGHT)? (int32_t)height : (int32_t)(height-(y + height*8 - GMEM_HEIGHT)/8);
+    int32_t j_start = (x < 0)? -(int32_t)(x) : 0;
+    int32_t j_stop = (x + width < GMEM_WIDTH)? (int32_t)width : (int32_t)(-x + GMEM_WIDTH);
+    
+    /* Change negative y, so y/8 gives -(|y|/8) */
+    if (y < 0) {
+        byte_shift = 8 + (y % 8);
+        byte_shift = (byte_shift == 8)? 0 : byte_shift;
+        y -= 7;
+    } else {
+        byte_shift = y % 8;
+    }
+    
+    for(i = i_start; i < i_stop; i++) {
+        sprite_pos = (options_mask & DRAW_FLIP_SPRITE)? (i*width - j_start + width - 1) : (i*width + j_start);
+        gmem_pos = ((y/8) + i) * GMEM_WIDTH + x + j_start; 
+        if(gmem_pos >= GMEM_SIZE) continue;
+        for(j = j_start; j < j_stop; j++) {
+            
+            /* Draw black byte */            
+            if (!(options_mask & DRAW_BLACK_NO)) {
+                if(options_mask & DRAW_BLACK_INVERT) {
+                    if(gmem_pos >= 0)
+                        gmem[gmem_pos] ^= (black_costume_data[sprite_pos] << byte_shift);
+                    if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                        gmem[gmem_pos+GMEM_WIDTH] ^= (black_costume_data[sprite_pos] >> (8-byte_shift));
+                } else {
+                    if(options_mask & DRAW_BLACK_WHITE) {
+                        if(gmem_pos >= 0)
+                            gmem[gmem_pos] |= (black_costume_data[sprite_pos] << byte_shift);
+                        if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                            gmem[gmem_pos+GMEM_WIDTH] |= (black_costume_data[sprite_pos] >> (8-byte_shift));
+                    } else {
+                        if(gmem_pos >= 0)
+                            gmem[gmem_pos] &= ~(black_costume_data[sprite_pos] << byte_shift);
+                        if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                            gmem[gmem_pos+GMEM_WIDTH] &= ~(black_costume_data[sprite_pos] >> (8-byte_shift));
+                    }
+                }
+            }
+            
+            /* Draw white byte */
+            if (!(options_mask & DRAW_WHITE_NO)) {
+                if(options_mask & DRAW_WHITE_INVERT) {
+                    if(gmem_pos >= 0)
+                        gmem[gmem_pos] ^= (white_costume_data[sprite_pos] << byte_shift);
+                    if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                        gmem[gmem_pos+GMEM_WIDTH] ^= (white_costume_data[sprite_pos] >> (8-byte_shift));
+                } else {
+                    if(options_mask & DRAW_WHITE_BLACK) {
+                        if(gmem_pos >= 0)
+                            gmem[gmem_pos] &= ~(white_costume_data[sprite_pos] << byte_shift);
+                        if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                            gmem[gmem_pos+GMEM_WIDTH] &= ~(white_costume_data[sprite_pos] >> (8-byte_shift));
+                    } else {
+                        if(gmem_pos >= 0)
+                            gmem[gmem_pos] |= (white_costume_data[sprite_pos] << byte_shift);
+                        if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                            gmem[gmem_pos+GMEM_WIDTH] |= (white_costume_data[sprite_pos] >> (8-byte_shift));
+                    }
+                }
+            }
+            
+            gmem_pos++;
+            if(options_mask & DRAW_FLIP_SPRITE) 
+                sprite_pos--;
+            else 
+                sprite_pos++;
+                
+        } /* j */
+    } /* i */
+    
 }
 
 /* 
@@ -456,84 +456,84 @@ void draw_sprite(Sprite sprite, uint32_t costume, int16_t x, int16_t y, uint32_t
  */
 uint32_t check_sprite_collision(Sprite sprite, uint32_t costume, int16_t x, int16_t y, uint32_t options_mask)
 {
-	uint8_t tmp_byte;
-	int32_t i, j;
-	uint8_t *black_costume_data, *white_costume_data;
-	uint32_t width, height;
-	int16_t sprite_pos, gmem_pos;
-	uint8_t byte_shift;
-	
-	/* Check costume */
-	if (costume >= sprite.n_costumes) return 0;
-	black_costume_data = sprite.black_costumes_bank[costume];
-	white_costume_data = sprite.white_costumes_bank[costume];
-	
-	/* Rewrite parameters */
-	height = sprite.height;
-	width = sprite.width;
-	
-	/* No collision if out of frame */
-	if (y <= -(int16_t)(height)*8 || y >= GMEM_HEIGHT || x <= -(int16_t)(width)) return 0;
-	
-	/* Return if no active arguments */
-	if(options_mask & (CHECK_BLACK_BLACK || CHECK_BLACK_WHITE || CHECK_WHITE_BLACK || CHECK_WHITE_WHITE) == 0) return 0;
-	
-	/* Identify checking boundaries */
-	int32_t i_start = (y < 0)? -(int32_t)(y/8) : 0;
-	int32_t i_stop = (y + height*8 - 8 < GMEM_HEIGHT)? (int32_t)height : (int32_t)(height-(y + height*8 - GMEM_HEIGHT)/8);
-	int32_t j_start = (x < 0)? -(int32_t)(x) : 0;
-	int32_t j_stop = (x + width < GMEM_WIDTH)? (int32_t)width : (int32_t)(-x + GMEM_WIDTH);
-	
-	/* Change negative y, so y/8 gives -(|y|/8) */
-	if (y < 0) {
-		byte_shift = 8 + (y % 8);
-		byte_shift = (byte_shift == 8)? 0 : byte_shift;
-		y -= 7;
-	} else {
-		byte_shift = y % 8;
-	}
-	
-	for(i = i_start; i < i_stop; i++) {
-		sprite_pos = (options_mask & CHECK_FLIP_SPRITE)? (i*width - j_start + width - 1) : (i*width + j_start);
-		gmem_pos = ((y/8) + i) * GMEM_WIDTH + x + j_start; 
-		if(gmem_pos >= GMEM_SIZE) continue;
-		for(j = j_start; j < j_stop; j++) {
-			
-			/* Check black byte */			
-			if (options_mask & CHECK_BLACK_BLACK) {
-				if(gmem_pos >= 0)
-					if (~gmem[gmem_pos] & (black_costume_data[sprite_pos] << byte_shift)) return 1;
-				if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-					if (~gmem[gmem_pos+GMEM_WIDTH] & (black_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
-			}
-			if(options_mask & CHECK_BLACK_WHITE) {
-				if(gmem_pos >= 0)
-					if (gmem[gmem_pos] & (black_costume_data[sprite_pos] << byte_shift)) return 1;
-				if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-					if (gmem[gmem_pos+GMEM_WIDTH] & (black_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
-			}
-			
-			/* Check white byte */
-			if (options_mask & CHECK_WHITE_WHITE) {
-				if(gmem_pos >= 0)
-					if (gmem[gmem_pos] & (white_costume_data[sprite_pos] << byte_shift)) return 1;
-				if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-					if (gmem[gmem_pos+GMEM_WIDTH] & (white_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
-			}
-			if(options_mask & CHECK_WHITE_BLACK) {
-				if(gmem_pos >= 0)
-					if (~gmem[gmem_pos] & (white_costume_data[sprite_pos] << byte_shift)) return 1;
-				if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)			
-					if (~gmem[gmem_pos+GMEM_WIDTH] & (white_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
-			}
-			
-			gmem_pos++;
-			if(options_mask & DRAW_FLIP_SPRITE) 
-				sprite_pos--;
-			else 
-				sprite_pos++;
-				
-		} /* j */
-	} /* i */
-	return 0;
+    uint8_t tmp_byte;
+    int32_t i, j;
+    uint8_t *black_costume_data, *white_costume_data;
+    uint32_t width, height;
+    int16_t sprite_pos, gmem_pos;
+    uint8_t byte_shift;
+    
+    /* Check costume */
+    if (costume >= sprite.n_costumes) return 0;
+    black_costume_data = sprite.black_costumes_bank[costume];
+    white_costume_data = sprite.white_costumes_bank[costume];
+    
+    /* Rewrite parameters */
+    height = sprite.height;
+    width = sprite.width;
+    
+    /* No collision if out of frame */
+    if (y <= -(int16_t)(height)*8 || y >= GMEM_HEIGHT || x <= -(int16_t)(width)) return 0;
+    
+    /* Return if no active arguments */
+    if(options_mask & (CHECK_BLACK_BLACK || CHECK_BLACK_WHITE || CHECK_WHITE_BLACK || CHECK_WHITE_WHITE) == 0) return 0;
+    
+    /* Identify checking boundaries */
+    int32_t i_start = (y < 0)? -(int32_t)(y/8) : 0;
+    int32_t i_stop = (y + height*8 - 8 < GMEM_HEIGHT)? (int32_t)height : (int32_t)(height-(y + height*8 - GMEM_HEIGHT)/8);
+    int32_t j_start = (x < 0)? -(int32_t)(x) : 0;
+    int32_t j_stop = (x + width < GMEM_WIDTH)? (int32_t)width : (int32_t)(-x + GMEM_WIDTH);
+    
+    /* Change negative y, so y/8 gives -(|y|/8) */
+    if (y < 0) {
+        byte_shift = 8 + (y % 8);
+        byte_shift = (byte_shift == 8)? 0 : byte_shift;
+        y -= 7;
+    } else {
+        byte_shift = y % 8;
+    }
+    
+    for(i = i_start; i < i_stop; i++) {
+        sprite_pos = (options_mask & CHECK_FLIP_SPRITE)? (i*width - j_start + width - 1) : (i*width + j_start);
+        gmem_pos = ((y/8) + i) * GMEM_WIDTH + x + j_start; 
+        if(gmem_pos >= GMEM_SIZE) continue;
+        for(j = j_start; j < j_stop; j++) {
+            
+            /* Check black byte */            
+            if (options_mask & CHECK_BLACK_BLACK) {
+                if(gmem_pos >= 0)
+                    if (~gmem[gmem_pos] & (black_costume_data[sprite_pos] << byte_shift)) return 1;
+                if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                    if (~gmem[gmem_pos+GMEM_WIDTH] & (black_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
+            }
+            if(options_mask & CHECK_BLACK_WHITE) {
+                if(gmem_pos >= 0)
+                    if (gmem[gmem_pos] & (black_costume_data[sprite_pos] << byte_shift)) return 1;
+                if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                    if (gmem[gmem_pos+GMEM_WIDTH] & (black_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
+            }
+            
+            /* Check white byte */
+            if (options_mask & CHECK_WHITE_WHITE) {
+                if(gmem_pos >= 0)
+                    if (gmem[gmem_pos] & (white_costume_data[sprite_pos] << byte_shift)) return 1;
+                if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                    if (gmem[gmem_pos+GMEM_WIDTH] & (white_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
+            }
+            if(options_mask & CHECK_WHITE_BLACK) {
+                if(gmem_pos >= 0)
+                    if (~gmem[gmem_pos] & (white_costume_data[sprite_pos] << byte_shift)) return 1;
+                if (gmem_pos < GMEM_SIZE-GMEM_WIDTH)            
+                    if (~gmem[gmem_pos+GMEM_WIDTH] & (white_costume_data[sprite_pos] >> (8-byte_shift))) return 1;
+            }
+            
+            gmem_pos++;
+            if(options_mask & DRAW_FLIP_SPRITE) 
+                sprite_pos--;
+            else 
+                sprite_pos++;
+                
+        } /* j */
+    } /* i */
+    return 0;
 }

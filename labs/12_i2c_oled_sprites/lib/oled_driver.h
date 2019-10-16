@@ -36,11 +36,11 @@ enum color_t {
 };
 
 typedef struct {
-	uint32_t width;
-	uint32_t height;
-	uint8_t **black_costumes_bank;
-	uint8_t **white_costumes_bank;
-	uint32_t n_costumes;
+    uint32_t width;
+    uint32_t height;
+    uint8_t **black_costumes_bank;
+    uint8_t **white_costumes_bank;
+    uint32_t n_costumes;
 } Sprite;
 
 /*
