@@ -1,3 +1,7 @@
+/*
+ * This lab demonstrates the use of libopencm3 library
+ */
+
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
