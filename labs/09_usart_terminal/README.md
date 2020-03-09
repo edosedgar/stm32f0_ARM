@@ -68,6 +68,13 @@ NVIC_SetPriority(USART1_IRQn, 0);
 NVIC_EnableIRQ(USART1_IRQn);
 ```
 
+Подключение USART к плате:
+
+<p align="center">
+  <img width="800" src="https://github.com/leokondrashov/stm32f0_ARM/blob/master/docs/images/usart_connection.jpg" alt="usart_connection.jpg"/>
+  <p align="center"> Подключение USART <p align="center">
+
+
 ### Обработчик прерывания
 
 В обработчике прерывания смотрим какое прерывание: пришёл байт или конец передачи
