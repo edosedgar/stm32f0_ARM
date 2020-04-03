@@ -27,8 +27,7 @@ In progress
 All supplementary materials and teaching are delivered by
 
 * [Edgar Kaziakhmedov](https://vk.com/softed) - all main track lectures, labs, articles
-* [Vladislav Molodtsov](https://vk.com/molvlad) - mentor, articles, administration stuff
-* [Ilya Levitskiy](https://vk.com/id267671262) - mentor, labs, articles
-* [Viktor Prutyanov](https://vk.com/vprutyanov) - mentor
-* [Dmitry Zyuzin](https://vk.com/id33814927) - mentor
-* [Phillip Mikoyan](https://vk.com/philalala) - administration stuff
+* [Vladislav Molodtsov](https://vk.com/molvlad) - articles, administration stuff
+* [Leonid Kondrashov](https://vk.com/leo.kondrashov) - mentor, labs, articles
+* [Konstantin Nazarov](https://vk.com/id278911441) - labs, articles
+* [Ilya Legchilin](https://vk.com/ilya_leg4ilin) - articles, administration stuff
