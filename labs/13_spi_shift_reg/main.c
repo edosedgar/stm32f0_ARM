@@ -55,7 +55,7 @@ static void rcc_config()
 }
 
 /*
- * Clock on GPIOC and set pin with Blue led connected
+ * Clock on GPIOC and set pin with Blue led connected (just for debug)
  */
 static void gpio_config(void)
 {
@@ -94,8 +94,8 @@ static void hc595_config(void)
     LL_SPI_SetBaudRatePrescaler(SPI1, LL_SPI_BAUDRATEPRESCALER_DIV8);
     LL_SPI_SetTransferBitOrder(SPI1, LL_SPI_MSB_FIRST);
     LL_SPI_SetDataWidth(SPI1, LL_SPI_DATAWIDTH_8BIT);
-    //LL_SPI_SetNSSMode(SPI1, LL_SPI_NSS_HARD_OUTPUT);
-    //LL_SPI_EnableNSSPulseMgt(SPI1);
+    LL_SPI_SetNSSMode(SPI1, LL_SPI_NSS_SOFT);
+//    LL_SPI_EnableNSSPulseMgt(SPI1);
     LL_SPI_Enable(SPI1);
 }
 
@@ -107,11 +107,11 @@ static void hc595_set(uint8_t byte)
      * Send the data
      */
     LL_SPI_TransmitData8(SPI1, byte);
-    while (!LL_SPI_IsActiveFlag_TXE(SPI1));
+
     /*
      * Toggle latch pin
      */
-    LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_4);
+    LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_4);
     while (counter--);
     LL_GPIO_SetOutputPin(GPIOC, LL_GPIO_PIN_4);
     return;
