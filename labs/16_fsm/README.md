@@ -6,4 +6,4 @@
 3. Выключает оба светодиода, если PC9 включен, а PC8 выключен.
 
 Это можно изобразить в виде схемы: 
-![Image alt](https://github.com/edosedgar/stm32f0_ARM/edit/master/16_fsm/gt1.png)
+![Image alt](https://github.com/edosedgar/stm32f0_ARM/raw/master/16_fsm/gt1.png)
