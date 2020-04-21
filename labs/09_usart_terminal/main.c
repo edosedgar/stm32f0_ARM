@@ -172,7 +172,7 @@ static void manage_requests(void) {
     }
 
     while (!LL_USART_IsActiveFlag_TXE(USART1));
-    LL_USART_TransmitData8(USART1, is_ok + 0x30);
+    LL_USART_TransmitData8(USART1, is_ok + '0');
 
     uart_req.active = 0;
     return;

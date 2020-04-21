@@ -48,7 +48,7 @@ static void oled_hw_config(void)
      * Set I2C speed to 400 kHz, for further details refer
      * to lecture
      */
-    LL_I2C_SetTiming(I2C1, 0x50330309);
+    LL_I2C_SetTiming(I2C1, __LL_I2C_CONVERT_TIMINGS(5, 3, 3, 3, 9));
     LL_I2C_DisableClockStretching(I2C1);
     LL_I2C_SetMasterAddressingMode(I2C1, LL_I2C_ADDRESSING_MODE_7BIT);
     LL_I2C_SetMode(I2C1, LL_I2C_MODE_I2C);
