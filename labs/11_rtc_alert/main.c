@@ -78,9 +78,9 @@ static void rtc_config(void)
     LL_RTC_SetSynchPrescaler(RTC, 0x0137);
 
     LL_RTC_SetHourFormat(RTC, LL_RTC_HOURFORMAT_24HOUR);
-    LL_RTC_DATE_Config(RTC, LL_RTC_WEEKDAY_FRIDAY, 1,
-                       LL_RTC_MONTH_MARCH, 2019);
-    LL_RTC_TIME_Config(RTC, LL_RTC_TIME_FORMAT_AM_OR_24, 11, 22, 00);
+    LL_RTC_DATE_Config(RTC, LL_RTC_WEEKDAY_FRIDAY, 10,
+                       LL_RTC_MONTH_MAY, 0x2020);
+    LL_RTC_TIME_Config(RTC, LL_RTC_TIME_FORMAT_AM_OR_24, 0x18, 0x30, 00);
 
     LL_RTC_DisableInitMode(RTC);
     LL_RTC_EnableWriteProtection(RTC);
