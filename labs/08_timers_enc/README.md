@@ -40,23 +40,17 @@ LL_GPIO_SetPinPull(GPIOA, LL_GPIO_PIN_1, LL_GPIO_PULL_UP);
 LL_GPIO_SetPinPull(GPIOA, LL_GPIO_PIN_5, LL_GPIO_PULL_UP);
 ```
 
-Для таймера следует включить режим энкодера. Так как хотелось бы реагировать на каждый фронт обоих каналов, как описано на третьей строчке таблицы, то это указывается аргументом:
+Согласно примеру из руководства, настраиваем IC на ввод FP согласно номеру, те TI1FP1 и TI2FP2 ( 1 ). Выбираем полярность NONINVERTED. Не путать с Rising, Faling и Both edge. В режиме encoder oни означают другое. Для таймера следует включить режим энкодера. Так как хотелось бы реагировать на каждый фронт обоих каналов, как описано на третьей строчке таблицы, то это указывается аргументом:
+[справочном руководстве c.440](https://github.com/edosedgar/stm32f0_ARM/blob/master/docs/stm32f0xx_rm.pdf).
 
 ```C
-// Тактирование таймера TIM2
-LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
+LL_TIM_IC_SetActiveInput(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_ACTIVEINPUT_DIRECTTI); // 1
+LL_TIM_IC_SetActiveInput(TIM2, LL_TIM_CHANNEL_CH2, LL_TIM_ACTIVEINPUT_DIRECTTI); // 1
+LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_ETR_POLARITY_NONINVERTED);  // 2
+LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_ETR_POLARITY_NONINVERTED); // 2
 
 // Режим энкодера -         реакция по всем фронтам обоих каналов
 LL_TIM_SetEncoderMode(TIM2, LL_TIM_ENCODERMODE_X4_TI12);
-```
-
-Следующим шагом для обоих каналов выставляется реакция только по отрицательному фронту (falling). Дело в том, что разработчики не предусмотрели режим работы в точности как нарисовано на временной диаграмме. Если попытаться включить реакцию на оба типа фронтов (both edges), то счётчик будет хаотично переключаться, о чем нас предупреждают в [справочном руководстве](https://github.com/edosedgar/stm32f0_ARM/blob/master/docs/stm32f0xx_rm.pdf). Поэтому есть возможность задать только один из двух возможных вариантов: rising или falling edge. Здесь выбран второй вариант по аналогии с прошлой работой с энкодером.
-
-```C
-LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1,
-                          LL_TIM_IC_POLARITY_FALLING);
-LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH2,
-                          LL_TIM_IC_POLARITY_FALLING);
 ```
 
 В самом конце выставляется верхняя граница счёта таймера, и затем сам таймер включается. 

@@ -74,11 +74,16 @@ static void timers_config(void)
     LL_GPIO_SetPinPull(GPIOA, LL_GPIO_PIN_5, LL_GPIO_PULL_UP);
 
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
-    LL_TIM_SetEncoderMode(TIM2, LL_TIM_ENCODERMODE_X4_TI12);
-    LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1,
-                          LL_TIM_IC_POLARITY_FALLING);
-    LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH2,
-                          LL_TIM_IC_POLARITY_FALLING);
+    /* (1) Configure TI1FP1 on TI1 (CC1S = 01)
+         configure TI1FP2 on TI2 (CC2S = 01) */
+    /* (2) Configure TI1FP1 and TI2FP2 non inverted (CC1P = CC2P = 0, reset value) */
+    /* (3) Configure both inputs are active on both rising and falling edges
+        (SMS = 011) */ 
+    LL_TIM_IC_SetActiveInput(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_ACTIVEINPUT_DIRECTTI); // 1
+    LL_TIM_IC_SetActiveInput(TIM2, LL_TIM_CHANNEL_CH2, LL_TIM_ACTIVEINPUT_DIRECTTI); // 1
+    LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_ETR_POLARITY_NONINVERTED);  // 2
+    LL_TIM_IC_SetPolarity(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_ETR_POLARITY_NONINVERTED);  // 2
+    LL_TIM_SetEncoderMode(TIM2, LL_TIM_ENCODERMODE_X4_TI12); // 3
     //LL_TIM_IC_SetFilter(TIM2, LL_TIM_CHANNEL_CH1, LL_TIM_IC_FILTER_FDIV16_N5);
     //LL_TIM_IC_SetFilter(TIM2, LL_TIM_CHANNEL_CH2, LL_TIM_IC_FILTER_FDIV16_N5);
     LL_TIM_SetAutoReload(TIM2, 0xFFFF);
