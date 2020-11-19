@@ -63,23 +63,23 @@ static uint8_t oled_cmd_send(uint8_t byte)
      * Initiate transmission
      * Display address = 0x78
      */
-    LL_I2C_HandleTransfer(I2C2, 0x78, LL_I2C_ADDRSLAVE_7BIT,
+    LL_I2C_HandleTransfer(I2C1, 0x78, LL_I2C_ADDRSLAVE_7BIT,
                           2, LL_I2C_MODE_AUTOEND,
                           LL_I2C_GENERATE_START_WRITE);
     /*
      * Send Control byte (Co = 0, D/C# = 0)
      */
-    while (!LL_I2C_IsActiveFlag_TXIS(I2C2));
-    LL_I2C_TransmitData8(I2C2, 0x00);
+    while (!LL_I2C_IsActiveFlag_TXIS(I2C1));
+    LL_I2C_TransmitData8(I2C1, 0x00);
     /*
      * Send cmd
      */
-    while (!LL_I2C_IsActiveFlag_TXIS(I2C2));
-    LL_I2C_TransmitData8(I2C2, byte);
+    while (!LL_I2C_IsActiveFlag_TXIS(I2C1));
+    LL_I2C_TransmitData8(I2C1, byte);
     /*
      * Check for end of transmission
      */
-    while (LL_I2C_IsActiveFlag_TC(I2C2));
+    while (LL_I2C_IsActiveFlag_TC(I2C1));
     return 0;
 }
 
@@ -91,25 +91,25 @@ static uint8_t oled_data_send(uint8_t *byte, uint8_t size)
      * Initiate transmission
      * Display address = 0x78
      */
-    LL_I2C_HandleTransfer(I2C2, 0x78, LL_I2C_ADDRSLAVE_7BIT,
+    LL_I2C_HandleTransfer(I2C1, 0x78, LL_I2C_ADDRSLAVE_7BIT,
                           size + 1, LL_I2C_MODE_AUTOEND,
                           LL_I2C_GENERATE_START_WRITE);
     /*
      * Send Control byte (Co = 0, D/C# = 1)
      */
-    while (!LL_I2C_IsActiveFlag_TXIS(I2C2));
-    LL_I2C_TransmitData8(I2C2, 0x40);
+    while (!LL_I2C_IsActiveFlag_TXIS(I2C1));
+    LL_I2C_TransmitData8(I2C1, 0x40);
     /*
      * Send data
      */
     for (i = 0; i < size; i++) {
-        while (!LL_I2C_IsActiveFlag_TXIS(I2C2));
-        LL_I2C_TransmitData8(I2C2, byte[i]);
+        while (!LL_I2C_IsActiveFlag_TXIS(I2C1));
+        LL_I2C_TransmitData8(I2C1, byte[i]);
     }
     /*
      * Check for end of transmission
      */
-    while (LL_I2C_IsActiveFlag_TC(I2C2));
+    while (LL_I2C_IsActiveFlag_TC(I2C1));
     return 0;
 }
 
@@ -456,7 +456,7 @@ void draw_sprite(Sprite sprite, uint32_t costume, int16_t x, int16_t y, uint32_t
  */
 uint32_t check_sprite_collision(Sprite sprite, uint32_t costume, int16_t x, int16_t y, uint32_t options_mask)
 {
-    uint8_t tmp_byte;
+    //uint8_t tmp_byte;
     int32_t i, j;
     uint8_t *black_costume_data, *white_costume_data;
     uint32_t width, height;
@@ -476,7 +476,7 @@ uint32_t check_sprite_collision(Sprite sprite, uint32_t costume, int16_t x, int1
     if (y <= -(int16_t)(height)*8 || y >= GMEM_HEIGHT || x <= -(int16_t)(width)) return 0;
     
     /* Return if no active arguments */
-    if(options_mask & (CHECK_BLACK_BLACK || CHECK_BLACK_WHITE || CHECK_WHITE_BLACK || CHECK_WHITE_WHITE) == 0) return 0;
+    if((options_mask & (CHECK_BLACK_BLACK || CHECK_BLACK_WHITE || CHECK_WHITE_BLACK || CHECK_WHITE_WHITE)) == 0) return 0;
     
     /* Identify checking boundaries */
     int32_t i_start = (y < 0)? -(int32_t)(y/8) : 0;
