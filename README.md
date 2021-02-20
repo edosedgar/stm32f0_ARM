@@ -24,5 +24,5 @@ In progress
 
 ## Contacts
 
-Should you have any questions, feel free to contact via [e-mail](mailto:edos.edgar@gmail.com?subject=[STM32 course])
+Should you have any questions, feel free to contact via [e-mail](mailto:edos.edgar@gmail.com)
 with subject "STM32 course".
