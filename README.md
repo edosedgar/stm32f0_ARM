@@ -22,12 +22,7 @@ If you need just a template project, refer to
 
 In progress
 
-## Contributors & course staff
+## Contacts
 
-All supplementary materials and teaching are delivered by
-
-* [Edgar Kaziakhmedov](https://vk.com/softed) - all main track lectures, labs, articles
-* [Vladislav Molodtsov](https://vk.com/molvlad) - articles, administration stuff
-* [Leonid Kondrashov](https://vk.com/leo.kondrashov) - mentor, labs, articles
-* [Konstantin Nazarov](https://vk.com/id278911441) - labs, articles
-* [Ilya Legchilin](https://vk.com/ilya_leg4ilin) - articles, administration stuff
+Should you have any questions, feel free to contact via [e-mail](edos.edgar@gmail.com)
+with subject "STM32 course".
