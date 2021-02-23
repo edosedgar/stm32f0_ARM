@@ -36,7 +36,7 @@ Clocking map of stm32f0. Memory latency. Reset system.
 4. **General-purpose input/output (GPIO).**
 Structure of an I/O port bit. Input floating. Input pull-up. Input push-down.
 Shmitt trigger. Contact debouncing. Analog input. I/O pin alternate functions.
-7-segment indicator. Dynamical indication.
+7-segment indicator. Dynamic indication.
 
 5. **Nested vectored interrupt controller (NVIC). System and peripheral interrupts.**
 Event-handling policies: busy-polling, interrupts. Interrupt handling: stacking,
