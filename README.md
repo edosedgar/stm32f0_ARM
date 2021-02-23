@@ -20,7 +20,75 @@ If you need just a template project, refer to
 
 ## Syllabus
 
-In progress
+1. **Toolchain for programming microcontrollers.**
+ARM architecture cross-compiler. On-board debugger. Boot modes. Boot-loader.
+Configuration bytes.
+
+2. **CPU core. Memory map.**
+Registers. Microcontroller system architecture. Memory organization:
+static RAM (SRAM), peripheral memory, system memory.Code execution:
+interrupt table, stack, heap.
+
+3. **Reset and clock control (RCC).**
+Clocking signal. Rising edge, falling edge. Clock sources: HSI, HSE, PLL.
+Clocking map of stm32f0. Memory latency. Reset system.
+
+4. **General-purpose input/output (GPIO).**
+Structure of an I/O port bit. Input floating. Input pull-up. Input push-down.
+Shmitt trigger. Contact debouncing. Analog input. I/O pin alternate functions.
+7-segment indicator. Dynamical indication.
+
+5. **Nested vectored interrupt controller (NVIC). System and peripheral interrupts.**
+Event-handling policies: busy-polling, interrupts. Interrupt handling: stacking,
+unstacking, nested interrupts, tail-chaining, late-arriving. Interrupt priority
+and status. Interrupt table.
+
+6. **Extended interrupts and events controller (EXTI). System timer.**
+Internal structure of EXTI module. EXTI configuration. Internal structure of
+a system timer: counter, reload value, control and status registers. SysTick
+configuration. Encoder.
+
+7. **General-purpose timers.**
+Counter structure: counter register, prescaler register, auto-reload register.
+Counter timing diagram. Counter modes: upcounting, downcounting, up/down counting.
+Timer configuration. Input capture.
+
+8. **Encoder support. Pulse-width modulation (PWM).**
+Incremental encoder operation. Encoder interface mode of a timer. Output compare mode
+of a timer. Pulse-width modulation, duty cycle. Edge-aligned PWM, center-aligned PWM.
+Piezo-buzzer and PWM-based sound generation.
+
+9. **Universal synchronous and asynchronous receiver-transmitter (USART).**
+Communication directions: simplex, half-duplex, full-duplex. USART signaling scheme:
+start bit, data bits, parity bit, stop bit. USART configuration: baudrate, endianness,
+oversampling. USART interrupts.
+
+10. **Direct Memory Access (DMA).**
+DMA transactions. Internal structure of DMA module. DMA transfer parameters: peripheral
+and memory adresses, circular mode. DMA interrupts. 
+
+11. **Real-time clock (RTC).**
+Internal structure of RTC module. Time representation, the binary-coded
+decimal (BCD) format. Alarm clock implementation: masking, interrupts. 
+
+12. **Inter-Integrated Circuit bus (I2C).**
+I2C signaling: data pin (SDA), clock pin (SCL), baud rates, addressing, timings.
+I2C module internal structure. Connection of EEPROM and OLED-display over I2C.
+
+13. **Serial Peripheral Interface (SPI).**
+SPI signaling: MISO and MOSI pins, slave select pin, clock polarity. Internal
+structure of SPI module. SPI communication modes: simplex, half-duplex,
+full-duplex, multi-slave, multi-master. Recieve and transmit queues
+(RXFIFO, TXFIFO). SPI interrupts. Shift register.
+
+14. **Analog-to-digital (ADC) and digital-to-analog (DAC) converters.**
+Successive approximation ADC structure. Internal structure of ADC and DAC modules.
+ADC operation: clock source, calibration, sampling time. Data alignment. ADC
+operation modes: single conversion, continious conversion, discontinious mode.
+ADC operation diagrams. DMA usage. Temperature sensor and referece voltage.
+
+15. **Low-power mode.**
+Sleep mode, stop mode, standby mode. Clocking domains.
 
 ## Contacts
 
