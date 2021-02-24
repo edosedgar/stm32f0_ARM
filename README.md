@@ -90,6 +90,18 @@ ADC operation diagrams. DMA usage. Temperature sensor and referece voltage.
 15. **Low-power mode.**
 Sleep mode, stop mode, standby mode. Clocking domains.
 
+16. **Introduction to Operating Systems.**
+Finite State Machine (FSM). Minimal OS. Real-Time Operating System (RTOS). FreeRTOS:
+tasks, scheduler, priorities. Inter-Process Communication (IPC): mutex, semaphore, notificator.
+Critical section. RWM-operation. Deadlock. Message queue. 
+
+
+17. **STM32 Microcontroller Ecosystem.**
+ST-Link. Microcontroller evaluation boards: STM32F0-Discovery, minimal STM32F0 board,
+STM32F1 Blue Pill, STM32F4-Discovery, STM32G0 board. Printed circuit board production software.
+Libraries overview. 
+
+
 ## Contacts
 
 Should you have any questions, feel free to contact via [e-mail](mailto:edos.edgar@gmail.com)
