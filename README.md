@@ -20,7 +20,7 @@ If you need just a template project, refer to
 
 ## Syllabus
 
-1. **Toolchain for programming microcontrollers.**
+1. **Toolchain for embedded programming.**
 ARM architecture cross-compiler. On-board debugger. Boot modes. Boot-loader.
 Configuration bytes.
 
@@ -34,14 +34,14 @@ Clocking signal. Rising edge, falling edge. Clock sources: HSI, HSE, PLL.
 Clocking map of stm32f0. Memory latency. Reset system.
 
 4. **General-purpose input/output (GPIO).**
-Structure of an I/O port bit. Input floating. Input pull-up. Input push-down.
-Shmitt trigger. Contact debouncing. Analog input. I/O pin alternate functions.
-7-segment indicator. Dynamic indication.
+Structure of GPIO. Input floating. Input pull-up. Input push-down.
+Shmitt trigger. Contact debouncing. Analog input. I/O alternate functions.
+7-segment LED. Dynamic indication.
 
 5. **Nested vectored interrupt controller (NVIC). System and peripheral interrupts.**
-Event-handling policies: busy-polling, interrupts. Interrupt handling: stacking,
-unstacking, nested interrupts, tail-chaining, late-arriving. Interrupt priority
-and status. Interrupt table.
+Event-handling policies: polling, interrupts. Interrupt handling: frame stacking,
+frame unstacking, nested interrupts, tail-chaining, late-arriving. Interrupt priority
+and status. Interrupt vector table.
 
 6. **Extended interrupts and events controller (EXTI). System timer.**
 Internal structure of EXTI module. EXTI configuration. Internal structure of
@@ -49,14 +49,14 @@ a system timer: counter, reload value, control and status registers. SysTick
 configuration. Encoder.
 
 7. **General-purpose timers.**
-Counter structure: counter register, prescaler register, auto-reload register.
+Counter structure: counter register, pre-scaler register, auto-reload register.
 Counter timing diagram. Counter modes: upcounting, downcounting, up/down counting.
 Timer configuration. Input capture.
 
 8. **Encoder support. Pulse-width modulation (PWM).**
 Incremental encoder operation. Encoder interface mode of a timer. Output compare mode
 of a timer. Pulse-width modulation, duty cycle. Edge-aligned PWM, center-aligned PWM.
-Piezo-buzzer and PWM-based sound generation.
+Piezoelectric buzzer and PWM-based sound generation.
 
 9. **Universal synchronous and asynchronous receiver-transmitter (USART).**
 Communication directions: simplex, half-duplex, full-duplex. USART signaling scheme:
@@ -68,7 +68,7 @@ DMA transactions. Internal structure of DMA module. DMA transfer parameters: per
 and memory adresses, circular mode. DMA interrupts. 
 
 11. **Real-time clock (RTC).**
-Internal structure of RTC module. Time representation, the binary-coded
+Internal structure of RTC module. Time representation, binary-coded
 decimal (BCD) format. Alarm clock implementation: masking, interrupts. 
 
 12. **Inter-Integrated Circuit bus (I2C).**
@@ -85,13 +85,13 @@ full-duplex, multi-slave, multi-master. Recieve and transmit queues
 Successive approximation ADC structure. Internal structure of ADC and DAC modules.
 ADC operation: clock source, calibration, sampling time. Data alignment. ADC
 operation modes: single conversion, continious conversion, discontinious mode.
-ADC operation diagrams. DMA usage. Temperature sensor and referece voltage.
+ADC operation diagrams. DMA usage. Temperature sensor and reference voltage.
 
 15. **Low-power mode.**
-Sleep mode, stop mode, standby mode. Clocking domains.
+Sleep mode, stop mode, stand-by mode. Clocking domains.
 
 16. **Introduction to Operating Systems.**
-Finite State Machine (FSM). Minimal OS. Real-Time Operating System (RTOS). FreeRTOS:
+Finite State Machine (FSM). Basic OS. Real-Time Operating System (RTOS). FreeRTOS:
 tasks, scheduler, priorities. Inter-Process Communication (IPC): mutex, semaphore, notificator.
 Critical section. RWM-operation. Deadlock. Message queue. 
 
