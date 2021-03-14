@@ -104,7 +104,7 @@ void dac_config(void)
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_DAC1);
     LL_DAC_EnableTrigger(DAC1, LL_DAC_CHANNEL_1);
     LL_DAC_SetTriggerSource(DAC1, LL_DAC_CHANNEL_1, LL_DAC_TRIG_EXT_TIM2_TRGO);
-    LL_DAC_SetOutputBuffer(DAC1, LL_DAC_CHANNEL_1,\
+    LL_DAC_SetOutputBuffer(DAC1, LL_DAC_CHANNEL_1,
                            LL_DAC_OUTPUT_BUFFER_ENABLE);
     LL_DAC_ConvertData12RightAligned(DAC1, LL_DAC_CHANNEL_1, 0xFF);
     LL_DAC_Enable(DAC1, LL_DAC_CHANNEL_1);
