@@ -104,5 +104,4 @@ Libraries overview.
 
 ## Contacts
 
-Should you have any questions, feel free to contact via [e-mail](mailto:edos.edgar@gmail.com)
-with subject "STM32 course".
+All questions should be directed via email edos dot edgar at gmail.com with subject "STM32 course".
