@@ -78,7 +78,7 @@ I2C module internal structure. Connection of EEPROM and OLED-display over I2C.
 13. **Serial Peripheral Interface (SPI).**
 SPI signaling: MISO and MOSI pins, slave select pin, clock polarity. Internal
 structure of SPI module. SPI communication modes: simplex, half-duplex,
-full-duplex, multi-slave, multi-master. Recieve and transmit queues
+full-duplex, multi-slave, multi-master. Receive and transmit queues
 (RXFIFO, TXFIFO). SPI interrupts. Shift register.
 
 14. **Analog-to-digital (ADC) and digital-to-analog (DAC) converters.**
